@@ -1,0 +1,159 @@
+
+
+
+.ayah-translation{
+  text-align: center;
+  color: #43a047;
+}
+/* Spinner Styles */
+.loader {
+  border: 6px solid #f3f3f3; /* Light gray */
+  border-top: 6px solid #007bff; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 50px auto; /* center horizontally */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.active-ayah {
+  background-color: #e8f0fe;
+  border-radius: 10px;
+  scroll-margin: 40vh; /* keeps it centered */
+  transition: background 0.5s ease;
+}
+.highlight-ayah {
+  background-color:#e8f0fe;
+  transition: background-color 0.3s ease;
+}
+
+/* Container */
+.juz-container {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+/* Each Surah block */
+
+
+/* Surah title (top heading) */
+.surah-heading {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.surah-title {
+  font-size: 28px;
+  color: #222;
+  font-weight: bold;
+  font-family: "Scheherazade New", serif;
+}
+
+/* Basmala (بسم الله) */
+.basmala {
+  text-align: center;
+  font-size: 22px;
+  margin: 10px 0;
+  color: #333;
+  font-family: "Scheherazade New", serif;
+}
+
+/* Buttons below Basmala */
+.surah-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.information-btn {
+  color:black;
+  cursor: pointer;
+  font-size: 14px;
+  cursor: pointer;
+   border-radius: 8px;
+    padding: 6px 12px;
+     border: none;
+}
+.information-btn:hover{
+  background: #43a047;
+}
+
+.play-surah-btn {
+ 
+  color:black;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.play-surah-btn:hover {
+  background-color: #43a047;
+}
+
+/* Verses */
+.verses-list {
+  text-align: center;
+  direction: rtl;
+  line-height: 2.3;
+  font-size: 22px;
+  font-family: "Scheherazade New", serif;
+}
+
+.ayah-line {
+  text-align: center;
+  font-size: 20px;
+  line-height: 2;
+  direction: rtl;
+  margin: 4px 0;
+}
+
+.ayah-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  background: #4299e1;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+.audio-player-fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 470px;
+  right: 0; /* ensures it touches both edges */
+  width: 50vw; /* ✅ force full viewport width */
+  height: 56px;
+  background: #fff;
+  border: 2px solid #383737;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  outline: none;
+  margin: 0;
+  border-radius: 18px;
+  display: block;
+}
+
+audio {
+  width: 100%;
+  max-width: 1055px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+
+

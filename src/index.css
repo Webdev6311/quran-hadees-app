@@ -1,0 +1,55 @@
+/* router.get("/surahs/index/:index", async (req, res) => {
+  try {
+    const indexParam = req.params.index;
+    const normalizedIndex = String(indexParam).padStart(3, "0");
+
+    const result = await Surah.aggregate([
+      // Convert string index to number
+      { $addFields: { indexNum: { $toInt: "$index" } } },
+
+      // Match requested surah
+      { $match: { index: normalizedIndex } },
+
+      // Lookup surahs collection by numeric number
+      {
+        $lookup: {
+          from: "surahs",
+          localField: "indexNum",
+          foreignField: "number",
+          as: "surahDetails",
+        },
+      },
+
+      // Convert array to object
+      { $unwind: { path: "$surahDetails", preserveNullAndEmptyArrays: true } }
+    ]);
+
+    if (!result.length) return res.status(404).json({ error: "Surah not found" });
+
+    const surah = result[0];
+
+    const verses = Object.keys(surah.verse || {}).map((key, idx) => ({
+      number: idx + 1,
+      text: surah.verse[key],
+      urduTranslation: "",        // Add Urdu if needed
+      englishTranslation: "",     // Add English if needed
+    }));
+
+    res.json({
+      index: surah.index,
+      name: surah.name,
+      englishName: surah.surahDetails?.englishName || surah.name,
+      englishNameTranslation: surah.surahDetails?.englishNameTranslation || "",
+      numberOfAyahs: surah.count,
+      revelationType: surah.surahDetails?.revelationType || "Unknown",
+      verses,
+      juz: surah.juz || [],
+    });
+
+  } catch (err) {
+    console.error("Error fetching Surah with join:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+}); */
+
+

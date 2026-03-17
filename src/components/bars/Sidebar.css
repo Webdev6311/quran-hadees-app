@@ -1,0 +1,785 @@
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;  /* Align buttons to the left and right */
+  align-items: center;  /* Vertically center the icons */
+  padding: 10px;  /* Optional padding */
+}
+
+/* Page Tab Styles */
+.page-list {
+  padding: 10px;
+}
+
+.page-item {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+
+
+
+.surah-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 100%;
+  overflow-y: auto;   /* ✅ enable scroll */
+  overflow-x: hidden;
+}
+.surah-item {
+  margin-left: 20px;
+  border-left: 2px solid #3498db;
+  transition: all 0.3s ease;
+}
+
+
+
+
+
+/* Sidebar Tip Styles */
+.sidebar-tip {
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+  margin-bottom: 1px;
+  font-size: 15px;
+  color: #bbb;
+}
+
+.shortcut-btn {
+  background: #1e293b;
+  color: #f0efef;
+  border: 1px solid #f5f5f4;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.page-number {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.page-juz {
+  font-size: 12px;
+  color: #7f8c8d;
+  background: #e8f4fc;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.juz-list{
+  padding: 10px;
+}
+
+.page-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.surah-name {
+  font-size: 13px;
+  color: #3498db;
+  font-weight: 500;
+}
+
+.verse-range {
+  font-size: 12px;
+  color: #95a5a6;
+}
+
+.page-footer {
+  text-align: right;
+}
+
+.total-verses {
+  font-size: 11px;
+  color: #27ae60;
+  background: #eafaf1;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* Juz Tab */
+
+
+/* Verse Tab */
+/* Legacy verse tab container (overridden later for two-column layout) */
+.verse-tab-container {
+  display: flex;
+  height: calc(100vh - 150px);
+}
+
+
+
+.verse-sub-sidebar {
+  width: 50%;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.verse-numbers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+}
+
+.verse-number-item {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: all 0.2s;
+  color:white;
+  font-weight: 600;
+  margin-left: 25px;
+  line-height: 25px;
+  cursor: pointer;
+}
+
+
+.page-list button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background: #f0a500;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+.page-list button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* Spinner CSS */
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); /* Light border */
+  border-top: 4px solid #4caf50; /* Green top border */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: auto; /* Center horizontally */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+.page-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 15px;
+  margin: 5px 0;
+  background:#0d1b2a;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+}
+
+
+
+.page-number {
+  font-weight: bold;
+  color:white;
+  font-size: 1.1em;
+  
+
+}
+.page-number:hover{
+  background: none;
+}
+
+
+.page-surah-info {
+  color:white;
+  font-size: 0.9em;
+  text-align: right;
+  direction: rtl;
+  padding-right: 10px;
+}
+
+
+
+.bar{
+    border: none;
+    text-align: center;
+    margin-top: 6px;
+    position: relative;
+}
+
+/* Verse tab inline layout */
+.verse-tab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 10px;
+  color: #fff;
+}
+
+.verse-inline-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+
+
+
+.surah-number {
+ 
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+
+
+
+
+
+/* Sidebar menu */
+.sidebar-menu {
+  flex: 1;
+  overflow-y: auto;   /* ✅ scroll enable */
+  padding-bottom: 0;
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 7px;
+  margin-right: -7px;
+}
+
+/* =============================
+   GLOBAL SIDEBAR SCROLLBAR
+============================= */
+
+.sidebar-menu::-webkit-scrollbar,
+.surah-list::-webkit-scrollbar,
+.verse-sub-sidebar::-webkit-scrollbar,
+.verse-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-menu::-webkit-scrollbar-track,
+.surah-list::-webkit-scrollbar-track,
+.verse-sub-sidebar::-webkit-scrollbar-track,
+.verse-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb,
+.surah-list::-webkit-scrollbar-thumb,
+.verse-sub-sidebar::-webkit-scrollbar-thumb,
+.verse-list::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border-radius: 10px;
+}
+
+.sidebar-menu::-webkit-scrollbar-thumb:hover,
+.surah-list::-webkit-scrollbar-thumb:hover,
+.verse-sub-sidebar::-webkit-scrollbar-thumb:hover,
+.verse-list::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+
+
+
+/* =============================
+   SIDEBAR TOGGLE TABS
+============================= */
+.sidebar-toggle-tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1b263b;
+  border: 1px solid #415a77;
+  border-radius: 18px;
+  padding: 4px;
+  margin-bottom: 4px;
+  width: 79%;
+  
+    margin-left: 19px;
+
+}
+
+.toggle-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 13px;
+  padding: 8px 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 18px;
+}
+
+
+
+.toggle-btn.active {
+  background:white;
+  color: black;
+  border-radius: 18px !important;
+  box-shadow: 0 0 6px rgba(255, 165, 0, 0.5);
+}
+
+/* =============================
+   SIDEBAR BASE
+============================= */
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 90px;
+  left: -300px;
+  width: 280px;
+  height: calc(100% - 70px); /* Ensures sidebar fills screen, no extra space at bottom */
+  background-color: #0d1b2a;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px; /* Adjust the padding to give some space on the right side */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Hide any content outside of the sidebar */
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 280px;
+    top: 120px;
+    height: calc(100% - 120px);
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    left: -100%;
+    top: 100px;
+    height: calc(100% - 100px);
+  }
+
+ 
+}
+
+/* =============================
+   HEADER + CLOSE BUTTON
+============================= */
+.close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 249px;
+  margin-top: 63px;
+  position: fixed;
+}
+
+/* =============================
+   TABS + TIP TEXT
+============================= */
+.sidebar-tabs {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.tab-btn {
+  flex: 1;
+  margin: 0 5px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #1b263b;
+  color: #ddd;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.tab-btn.active {
+  background-color: #415a77;
+  color: #fff;
+}
+
+.tab-btn:hover {
+  background-color: #2b3a55;
+}
+
+.tip-text {
+  font-size: 17px;
+  color: #bbb;
+  margin-bottom: 19px;
+}
+
+.tip-text kbd {
+  background: #2c3e50;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+/* =============================
+   SEARCH BAR
+============================= */
+.search-bar {
+  width: 85%;
+  margin: 10px 0;
+  position: relative;
+  margin-left: 19px;
+}
+
+.search-input {
+   width: 110%;
+  padding: 10px 40px 10px 14px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+  background-color: #f5f5f5;
+  font-size: 15px;
+  color: #333;
+  box-sizing: border-box;
+  
+}
+
+.search-input::placeholder {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.page-search-container {
+  width: 85%;
+  margin-left: 19px;
+  margin-bottom: 10px;
+}
+
+.clear-btn {
+  position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+/* =============================
+   SURAH LIST (MAIN TAB)
+============================= */
+
+
+
+.sidebar-link {
+  position: relative;
+  padding: 8px 0px 10px 12px;
+  border-radius: 6px;
+  margin: 0px 0;
+  font-size: 15px;
+  cursor: pointer;
+  color: #e2e8f0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  text-transform: capitalize;
+   box-sizing: border-box;
+  width: 100%;
+}
+
+
+
+.sidebar-link.active {
+  
+  color: white;
+  font-weight: 500;
+  
+
+  /* 👇 movement khatam */
+  width: 100%;
+  margin-left: 0;
+}
+
+
+
+
+/* =============================
+   VERSE TAB
+============================= */
+.verse-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.surah-group {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4px;
+}
+
+.surah-group .sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 14px 10px 38px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.surah-group .sidebar-link::before {
+  content: attr(data-surah-number);
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.12);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #ffb703;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surah-group .sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.verse-list {
+  margin-left: 28px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  animation: fadeIn 0.3s ease;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  padding-left: 10px;
+}
+
+.verse-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #e0e0e0;
+  font-size: 14px;
+}
+
+.verse-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.verse-number {
+  font-weight: 600;
+  color: #ffb703;
+  min-width: 24px;
+  text-align: right;
+}
+
+.verse-text {
+  flex: 1;
+  font-size: 13px;
+  color: #ddd;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================
+   MISC
+============================= */
+.loading-text {
+  font-size: 13px;
+  color: #ccc;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+
+
+.verse-input{
+    position: fixed;
+    width: 4%;
+    padding: 10px 40px 10px 14px;
+    border-radius: 18px;
+    border: none;
+    outline: none;
+    background-color: #f5f5f5;
+    font-size: 12px;
+    color: #333;
+    margin-top: -25px;
+    margin-left: -46px;
+}
+.verse-surah-search .search-input {
+  width: 19%; /* Make search bar take full width of its column */
+  padding: 10px 40px 10px 14px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background-color: #f5f5f5;
+  font-size: 15px;
+  color: #333;
+  margin-top: 3px; /* Optional: remove extra top margin */
+  margin-left: 26px;
+}
+
+/* Two-column Verse Sidebar Layout */
+/* Two-column Verse Sidebar Layout */
+.verse-tab-container {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  height: 100%;
+}
+
+
+/* Make sure both columns share the width, so verses are actually visible */
+.verse-tab-container .surah-list {
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 12px;
+    font-weight: 400;
+    margin-right: -28px;
+
+    
+  
+}
+
+.verse-sub-sidebar {
+  flex: 1;
+  max-height: 100%;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+  overflow-y: auto;  /* enable vertical scroll */
+  overflow-x: hidden;
+}
+
+/* Search bars styling */
+.verse-search-container {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+
+
+.close-btn {
+  position: absolute;
+    right: 20px;
+    margin-top: -5%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    line-height: 1;
+}
+
+
+
+/* Make sure the search bars are properly aligned */
+.verse-surah-search {
+  width: 100%;
+  margin-bottom: 8px;
+}
+.surah-name {
+    font-size: 13px;
+    color: white;
+    font-weight: 600;
+    font-family: 'Amiri', serif;
+}
+
+

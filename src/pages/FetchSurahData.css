@@ -1,0 +1,316 @@
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1); 
+  border-top: 4px solid #4caf50; 
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: auto; 
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
+  gap: 10px;
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.pagination-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-number {
+  padding: 6px 12px;
+ 
+ 
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.page-number:hover {
+  background-color: #e0e0e0;
+}
+
+.page-number.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .page-numbers {
+    flex-wrap: wrap;
+  }
+}
+
+.surah-navigation {
+  display: flex;
+  justify-content: center; /* Center align row */
+  align-items: center;
+  gap: 10px; /* Buttons ke darmiyan gap */
+  margin: 30px 0;
+  flex-wrap: wrap; /* Mobile me wrap ho jaye */
+}
+
+
+.nav-btn {
+ padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  background: #076cfb;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Button size consistent rahe */
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.verse-translation {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+
+.verse-block {
+  margin-bottom: 18px;
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+
+.verse-urdu {
+  font-size: 20px;
+  color: #090000;
+  margin-top: 4px;
+  line-height: 1.6;
+  direction: rtl;
+  text-align: center;
+}
+
+.verse-arabic {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.verse-arabic-text {
+  font-size: 22px;
+  line-height: 2;
+  direction: rtl;
+  text-align: center;
+  font-family: "Amiri", serif;
+}
+
+
+
+.verse-arabic:hover {
+  background-color: rgba(255, 165, 0, 0.1);
+}
+
+.active-ayah {
+  background-color: #e8f0fe;
+}
+
+
+.active-ayah,
+.highlight-ayah {
+  background-color: #e8f0fe;
+  border-radius: 6px; 
+  transition: background-color 0.5s ease;
+}
+
+
+
+
+
+/* Back to Popular Button Styles */
+.back-to-popular-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-to-popular-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 22px;
+}
+
+.back-to-popular-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-popular-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .back-to-popular-container {
+    margin-bottom: 10px;
+  }
+  
+  .back-to-popular-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
+.surah-container {
+  margin: -15px auto;      /* pehle 30px → ab chhota */
+  padding: 10px 20px;     /* pehle 20px 40px → ab kam */
+  
+}
+
+/* Buttons aur surah text ke darmiyan gap fix */
+.surah-header {
+  margin-bottom: 5px !important;   /* pehle default ~30px hota hai */
+  padding-bottom: 0 !important;
+}
+
+/* Button spacing adjust */
+.surah-header button {
+  margin: 0 5px;
+}
+
+
+.surah-body {
+  margin-top: 5px;        /* pehle 20px tha → kam kar do */
+}
+
+.surah-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 8px;     /* pehle 15px tha → ab tight */
+}
+
+.reading-mode .verse-arabic {
+  text-align: center;
+  font-size: 20px;
+  line-height: 2;
+  direction: rtl;
+  margin: 5px 0;          /* bilkul 0 mat karo → thoda sa spacing rehne do */
+}
+
+
+/* Translation BELOW Arabic */
+.verse-translation {
+  margin-top: 6px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: #222;
+  text-align:center;   /* Urdu ke liye */
+  direction: rtl;
+}
+
+
+
+.verse-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #4299e1;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Verse Search Styles */
+.verse-search-container {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.verse-search-input {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.verse-search {
+  width: 100%;
+  padding: 10px 15px 10px 40px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f5f5f5;
+}
+
+.verse-search:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+  background-color: white;
+}
+
+.verse-search-input .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  font-size: 16px;
+}
+
+/* Highlight for search matches */
+.verse-match {
+  background-color: rgba(76, 175, 80, 0.2);
+  border-radius: 3px;
+  padding: 0 2px;
+}

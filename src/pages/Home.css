@@ -1,0 +1,134 @@
+.home { 
+  display: grid; 
+  gap: 56px;
+  padding: 20px;
+}
+
+.hero { 
+  display: grid; 
+  gap: 28px; 
+  align-items: center; 
+  grid-template-columns: 1.2fr .8fr;
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.hero-content { 
+  display: grid; 
+  gap: 16px; 
+}
+
+.hero h1 { 
+  font-size: 40px; 
+  line-height: 1.1; 
+  letter-spacing: .2px; 
+}
+
+.hero p { 
+  color: #475569; 
+  font-size: 18px; 
+}
+
+.hero-actions { 
+  display: flex; 
+  gap: 12px; 
+  margin-top: 8px; 
+}
+
+.btn { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 12px 16px; 
+  border-radius: 10px; 
+  font-weight: 600; 
+  text-decoration: none; 
+  transition: transform .12s ease, box-shadow .12s ease; 
+}
+
+.btn:hover { 
+  transform: translateY(-1px); 
+  box-shadow: 0 10px 18px rgba(16,185,129,.15); 
+}
+
+.btn.primary { 
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); 
+  color: white; 
+}
+
+.btn.ghost { 
+  background: transparent; 
+  color: #0f172a; 
+  border: 1px solid rgba(15,23,42,.15); 
+}
+
+.hero-card { 
+  display: grid; 
+  grid-auto-flow: column; 
+  gap: 16px; 
+  background: white; 
+  border: 1px solid rgba(15,23,42,.08); 
+  border-radius: 16px; 
+  padding: 24px; 
+  justify-content: space-between; 
+  box-shadow: 0 6px 24px rgba(2,6,23,.06);
+}
+
+.metric { 
+  display: grid; 
+  justify-items: center; 
+}
+
+.metric .num { 
+  font-size: 28px; 
+  font-weight: 800; 
+  color: #0f172a; 
+}
+
+.metric .label { 
+  color: #64748b; 
+  font-size: 12px; 
+}
+
+.features { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 18px; 
+}
+
+.feature { 
+  background: white; 
+  border: 1px solid rgba(15,23,42,.08); 
+  border-radius: 16px; 
+  padding: 18px; 
+  display: grid; 
+  gap: 8px; 
+  box-shadow: 0 6px 24px rgba(2,6,23,.05); 
+}
+
+.feature .icon { 
+  font-size: 22px; 
+}
+
+.feature h3 { 
+  font-size: 18px; 
+}
+
+.feature p { 
+  color: #64748b; 
+}
+.feature p { color: #64748b; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-card { grid-auto-flow: row; }
+  .features { grid-template-columns: 1fr; }
+}
+
+
+
+
+
+
