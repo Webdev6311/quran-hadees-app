@@ -1,0 +1,235 @@
+.contact-page {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: #0f172a;
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 60vh;
+  object-fit: cover;
+  border-radius: 0;
+  margin: -20px 20px 0 0px;
+}
+
+.contact-main-section {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 32px clamp(20px, 4vw, 56px) 64px;
+  box-sizing: border-box;
+  color: #e2e8f0;
+}
+
+.contact-content-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.contact-form-wrap {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.contact-form-wrap h2 {
+  margin: 0 0 8px;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.contact-form-lead {
+  margin: 0 0 24px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #94a3b8;
+}
+
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 40px;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.contact-field--phone {
+  grid-column: 1;
+}
+
+.contact-field--full {
+  grid-column: 1 / -1;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  color: #f1f5f9;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form-actions {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+}
+
+.contact-submit {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.contact-submit:hover {
+  filter: brightness(1.05);
+}
+
+.contact-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.contact-form-status {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.contact-form-status--success {
+  color: #bbf7d0;
+  background: rgba(22, 163, 74, 0.2);
+  border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.contact-form-status--error {
+  color: #fecaca;
+  background: rgba(185, 28, 28, 0.2);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.contact-info-wrap {
+  flex: 1 1 42%;
+  min-width: 260px;
+  padding: 0 0 0 48px;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  border-left: 1px solid rgba(148, 163, 184, 0.35);
+  background: transparent;
+}
+
+.contact-info-title {
+  margin: 0 0 20px;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.contact-info-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 47px;
+}
+
+.contact-info-row {
+  margin: 0;
+}
+
+.contact-info-row dt {
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.contact-info-row dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.contact-info-row a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.contact-info-row a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .contact-content-row {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .contact-info-wrap {
+    width: 100%;
+    padding: 40px 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-main-section {
+    padding: 24px clamp(16px, 4vw, 24px) 48px;
+  }
+
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-field--phone {
+    grid-column: auto;
+  }
+}

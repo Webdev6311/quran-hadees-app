@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./FetchPagesData.css";
+import DataLoader from "../components/DataLoader";
 import {
   FaChevronLeft,
   FaChevronRight,
@@ -81,16 +82,6 @@ const FetchPagesData = ({
         const surahName = v.surahName || page.surahName || `Surah ${surahNum}`;
         const arabicText = v.arabic || v.text || "";
 
-        // Debugging for Surah Al-A'raf on page 104
-        if (surahNum === 7 && pageNum === 104) {
-          console.log(`Debug: Processing verse for Surah 7, Page 104. Ayah: ${ayahNum}, Data:`, v);
-        }
-
-        // Skip Bismillah for Surah Al-Fatiha (page 1)
-        if (pageNum === 1 && surahNum === 1 && ayahNum === 1 && arabicText.includes("بِسْمِ")) {
-          return;
-        }
-
         surahsToTranslate.add(surahNum);
 
         if (!surahsInPage[surahNum]) surahsInPage[surahNum] = [];
@@ -134,17 +125,16 @@ const FetchPagesData = ({
       });
 
       setAllAyahs(allAyahsList);
-      
-      // Use consistent Juz display logic
+
       updateJuzDisplay({
         surahNumber: null,
         pageNumber: pageNum,
         juzNumber: null,
         pages: null,
         setCurrentJuzNumber: setCurrentJuzNumber,
-        activeTab: 'page'
+        activeTab: "page",
       });
-      
+
       setCurrentPageNumber?.(pageNum);
 
       // Set current surah number for navigation
@@ -186,27 +176,21 @@ const FetchPagesData = ({
       const results = await Promise.all(
         surahNumbers.map(async (surahNum) => {
           const padded = String(surahNum).padStart(3, "0");
-          const url = `http://localhost:5000/api/surahs/index/${padded}?lang=${translationLang}`;
-          const res = await axios.get(url);
+          const res = await axios.get(
+            `http://localhost:5000/api/surahs/index/${padded}`
+          );
 
+          const verses = res.data?.verses || [];
           const verseMap = {};
-          if (res.data?.verses) {
-            res.data.verses.forEach((verse) => {
-              const ayahNum = verse.numberInSurah || verse.number;
-
-              // 🚫 REMOVE BISMILLAH FOR ALL SURAHS
-              if (ayahNum === 1 && verse.text?.includes("بِسْمِ اللَّهِ")) return;
-
-              const adjustedAyah = ayahNum - 1;
-              if (adjustedAyah > 0) {
-                verseMap[adjustedAyah] = {
-                  translation:
-                    translationLang === "urdu"
-                      ? verse.urduTranslation || ""
-                      : verse.englishTranslation || "",
-                };
-              }
-            });
+          for (const v of verses) {
+            const ayahNum = Number(v.number);
+            if (!Number.isFinite(ayahNum)) continue;
+            if (surahNum === 1 && ayahNum === 1) continue;
+            const text =
+              translationLang === "urdu"
+                ? v.urduTranslation || ""
+                : v.englishTranslation || "";
+            verseMap[ayahNum] = { translation: text };
           }
           return { surahNum, translations: verseMap };
         })
@@ -294,10 +278,10 @@ const FetchPagesData = ({
   }, [pageNumber]);
 
   useEffect(() => {
-    if (pageData) {
+    if (pageData?.surahs) {
       fetchTranslations(Object.keys(pageData.surahs).map(Number));
     }
-  }, [translationLang]);
+  }, [translationLang, pageData?.page]);
 
   // Clean up audio
   useEffect(() => {
@@ -319,17 +303,23 @@ const FetchPagesData = ({
   // =========================
   // Render
   // =========================
-  if (loading) return <div className="loading-spinner">Loading...</div>;
+  if (loading)
+    return (
+      <DataLoader label="Loading page data…" className="fetch-pages-data-loader" />
+    );
   if (error) return <div>Error: {error}</div>;
+  if (!pageData) {
+    return <div className="loading-spinner">No page data.</div>;
+  }
 
   return (
-    <div className="page-container">
+    <div className="page-container mushaf-page-root">
       {Object.entries(pageData.surahs).map(([s, ayahs]) => {
         const surahNum = Number(s);
         const sortedAyahs = [...ayahs].sort((a, b) => (a.verse || 1) - (b.verse || 1));
 
         return (
-          <div key={surahNum} className="surah-section">
+          <div key={surahNum} >
             {/* Surah Header */}
             <div className="surah-header">
               <h2 className="surah-title">{sortedAyahs[0]?.surahName || `Surah ${surahNum}`}</h2>
@@ -344,39 +334,43 @@ const FetchPagesData = ({
                 </div>
               )}
 
-              <div className="surah-buttons">
-                <button className="btn btn-audio" onClick={toggleAudio} disabled={!audioUrl}>
-  {isPlaying ? (
-    <>
-        Pause Audio  <FaPause />
-    </>
-  ) : (
-    <>
-       Play Audio <FaPlay /> 
-    </>
-  )}
-</button>
+                {/* اصلی پیرنٹ کنٹینر جس میں display: flex لگا ہوا ہے */}
+<div className="surah-actions-container">
+  
+  {/* Play/Pause Audio Button */}
+ 
 
-                <div className="surah-info-wrapper">
-                  <div className="surah-info-dropdown">
-                    <button
-                      className="dropdown-btn"
-                      onClick={() => onOpenSurahInfo?.(surahNum, sortedAyahs[0]?.surahName, "urdu")}
-                    >
-                      Urdu Info
-                    </button>
-                    <button
-                      className="dropdown-btn"
-                      onClick={() => onOpenSurahInfo?.(surahNum, sortedAyahs[0]?.surahName, "english")}
-                    >
-                      English Info
-                    </button>
-                  </div>
-                  <button className="btn btn-info" onClick={() => onOpenGeneralSurahInfo?.(surahNum, sortedAyahs[0]?.surahName)}>
-                     Surah Info <FaInfoCircle />
-                  </button>
-                </div>
-              </div>
+  {/* Surah Info Wrapper (یہاں پوزیشن پلے آڈیو کے برابر آ جائے گی) */}
+  <div className="surah-info-wrapper">
+    <div className="surah-info-dropdown">
+      <button
+        className="dropdown-btn"
+        onClick={() => onOpenSurahInfo?.(surahNum, sortedAyahs[0]?.surahName, "urdu")}
+      >
+        Urdu Info
+      </button>
+      <button
+        className="dropdown-btn"
+        onClick={() => onOpenSurahInfo?.(surahNum, sortedAyahs[0]?.surahName, "english")}
+      >
+        English Info
+      </button>
+    </div>
+    
+    <button className="btn btn-info btn-fixed-width" onClick={() => onOpenGeneralSurahInfo?.(surahNum, sortedAyahs[0]?.surahName)}>
+       Surah Info <FaInfoCircle />
+    </button>
+  </div>
+
+   <button className="btn btn-audio btn-fixed-width" onClick={toggleAudio} disabled={!audioUrl}>
+    {isPlaying ? (
+      <>Pause Audio <FaPause /></>
+    ) : (
+      <>Play Audio <FaPlay /></>
+    )}
+  </button>
+
+</div>
             </div>
 
             {/* Ayahs List */}
@@ -425,7 +419,7 @@ const FetchPagesData = ({
 
   {/* Next Page */}
   {pageNumber < totalPages && (
-    <button className="nav" onClick={onNextPage}>
+    <button type="button" className="nav" onClick={onNextPage}>
       Next Page <FaChevronRight />
     </button>
   )}
@@ -458,7 +452,7 @@ const FetchPagesData = ({
 
   {/* Previous Page */}
   {pageNumber > 1 && (
-    <button className="nav" onClick={onPrevPage}>
+    <button type="button" className="nav" onClick={onPrevPage}>
       <FaChevronLeft /> Previous Page
     </button>
   )}

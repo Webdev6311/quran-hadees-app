@@ -76,7 +76,7 @@
   justify-content: center; /* Center align row */
   align-items: center;
   gap: 10px; /* Buttons ke darmiyan gap */
-  margin: 30px 0;
+  margin: 30px 0 160px;
   flex-wrap: wrap; /* Mobile me wrap ho jaye */
 }
 
@@ -216,10 +216,6 @@
   padding-bottom: 0 !important;
 }
 
-/* Button spacing adjust */
-.surah-header button {
-  margin: 0 5px;
-}
 
 
 .surah-body {

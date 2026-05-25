@@ -1,134 +1,301 @@
-.home { 
-  display: grid; 
-  gap: 56px;
-  padding: 20px;
+
+
+.home-page {
+  width: 100%;
 }
 
-.hero { 
-  display: grid; 
-  gap: 28px; 
-  align-items: center; 
-  grid-template-columns: 1.2fr .8fr;
-  background: white;
-  border-radius: 16px;
-  padding: 40px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.home {
+  width: 100vw;
+  max-width: 100vw;
+  min-height: 72vh; /* image section height */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  /* Background image settings */
+  background-size: cover;        /* poori screen cover kare */
+  background-position: center;   /* center align */
+  background-repeat: no-repeat;  /* repeat na ho */
+
+  /* overlay effect (dark look) */
+  position: relative;
 }
 
-.hero-content { 
-  display: grid; 
-  gap: 16px; 
+/* 🔥 Overlay (optional but professional) */
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* dark overlay */
 }
 
-.hero h1 { 
-  font-size: 40px; 
-  line-height: 1.1; 
-  letter-spacing: .2px; 
+.card-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  justify-content: center;
+  padding: 26px 20px 30px;
+  margin-top: 25px;
+  
 }
 
-.hero p { 
-  color: #475569; 
-  font-size: 18px; 
+.card {
+  width: min(320px, 100%);
+  min-height: 220px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 18px 20px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-actions { 
-  display: flex; 
-  gap: 12px; 
-  margin-top: 8px; 
+.card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
 }
 
-.btn { 
-  display: inline-flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 12px 16px; 
-  border-radius: 10px; 
-  font-weight: 600; 
-  text-decoration: none; 
-  transition: transform .12s ease, box-shadow .12s ease; 
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
 }
 
-.btn:hover { 
-  transform: translateY(-1px); 
-  box-shadow: 0 10px 18px rgba(16,185,129,.15); 
+.card-text {
+  text-align: left;
+  padding-top: 8px;
 }
 
-.btn.primary { 
-  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%); 
-  color: white; 
+.card-image {
+  
+  height: 64px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-top: -50px;
+  flex-shrink: 0;
 }
 
-.btn.ghost { 
-  background: transparent; 
-  color: #0f172a; 
-  border: 1px solid rgba(15,23,42,.15); 
+.card-title {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 14px;
+  font-size: 24px;
+  color: #0f172a;
 }
 
-.hero-card { 
-  display: grid; 
-  grid-auto-flow: column; 
-  gap: 16px; 
-  background: white; 
-  border: 1px solid rgba(15,23,42,.08); 
-  border-radius: 16px; 
-  padding: 24px; 
-  justify-content: space-between; 
-  box-shadow: 0 6px 24px rgba(2,6,23,.06);
+.card-text h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #0a0a0a;
 }
 
-.metric { 
-  display: grid; 
-  justify-items: center; 
+.card-text p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.35;
+  color: #0a0a0a;
 }
 
-.metric .num { 
-  font-size: 28px; 
-  font-weight: 800; 
-  color: #0f172a; 
+.card-action {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  margin-left: 100px;
 }
 
-.metric .label { 
-  color: #64748b; 
-  font-size: 12px; 
+.card-action-icon {
+  transition: transform 0.22s ease;
 }
 
-.features { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 18px; 
+.card-action:hover {
+  color: #1d4ed8;
 }
 
-.feature { 
-  background: white; 
-  border: 1px solid rgba(15,23,42,.08); 
-  border-radius: 16px; 
-  padding: 18px; 
-  display: grid; 
-  gap: 8px; 
-  box-shadow: 0 6px 24px rgba(2,6,23,.05); 
+.card-action:hover .card-action-icon {
+  transform: translateX(5px);
 }
 
-.feature .icon { 
-  font-size: 22px; 
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.15);
+  background: #ffffff;
 }
 
-.feature h3 { 
-  font-size: 18px; 
+.card-empty {
+  background: rgba(255, 255, 255, 0.5);
 }
 
-.feature p { 
-  color: #64748b; 
+.card-empty-expand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
 }
-.feature p { color: #64748b; }
+
+.card-title-muted {
+  color: #64748b;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.home-surah-toggle-btn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 45%, #0ea5e9 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.35);
+  animation: homeSurahBtnGlow 2.4s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-surah-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
+}
+
+.home-surah-toggle-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.home-surah-toggle-icon {
+  font-size: 18px;
+}
+
+@keyframes homeSurahBtnGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.home-surah-grid-section {
+  max-width: 1120px;
+  margin: 0 auto 48px;
+  padding: 0 20px 8px;
+  animation: homeSurahReveal 0.4s ease-out;
+}
+
+@keyframes homeSurahReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-surah-grid-status {
+  text-align: center;
+  color: #475569;
+  font-size: 15px;
+  margin: 0;
+  padding: 16px 0;
+}
+
+.home-surah-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.home-surah-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #0f172a;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.home-surah-cell:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.12);
+}
+
+.home-surah-num {
+  flex-shrink: 0;
+  min-width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1d4ed8;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 8px;
+}
+
+.home-surah-name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-card { grid-auto-flow: row; }
-  .features { grid-template-columns: 1fr; }
+  .home-surah-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
+@media (max-width: 480px) {
+  .home-surah-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
+@media (max-width: 1024px) {
+  .home {
+    min-height: 64vh;
+  }
+}
 
+@media (max-width: 768px) {
+  .home {
+    min-height: 56vh;
+  }
 
-
-
+ 
+}

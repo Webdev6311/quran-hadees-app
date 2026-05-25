@@ -1,9 +1,42 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import axios from "axios";
 import { FaChevronLeft, FaChevronRight, FaArrowLeft } from "react-icons/fa";
 import { useOutletContext } from "react-router-dom";
 import { JuzPageMap } from "./JuzPageMap";
+import DataLoader from "../components/DataLoader";
 import "./FetchSurahData.css";
+
+/** Page docs may use surahIndex, surahNumber, surahs[], or ranges[]. */
+function pageBelongsToSurah(p, surahNum) {
+  const n = Number(surahNum);
+  if (!Number.isFinite(n)) return false;
+  if (Number(p?.surahIndex) === n) return true;
+  if (Number(p?.surahNumber) === n) return true;
+  if (Array.isArray(p?.surahs)) {
+    if (p.surahs.some((s) => Number(s?.surahNumber) === n)) return true;
+  }
+  if (Array.isArray(p?.ranges)) {
+    if (
+      p.ranges.some((r) => {
+        const rn = typeof r?.surah === "object" ? r?.surah?.number : r?.surah;
+        return Number(rn) === n;
+      })
+    )
+      return true;
+  }
+  return false;
+}
+
+/**
+ * Surah-local ayah number for IDs, pagination, and highlight.
+ * Use only numberInSurah (coerced); do NOT use v.number — it is often a global / array index
+ * and after Bismillah slice it becomes 2,3,… for what should be ayah 1,2,…
+ */
+function numberInSurahForVerse(v, indexInVersesArray) {
+  const num = Number(v?.numberInSurah);
+  if (Number.isFinite(num) && num >= 1) return num;
+  return indexInVersesArray + 1;
+}
 
 const FetchSurahData = ({
   surahIndex,
@@ -18,18 +51,6 @@ const FetchSurahData = ({
   goLastPage,        // ✅ ADD THIS
   onBackToPopular    // ✅ ADD THIS for back navigation
 }) => {
- const ayahs =
-  pages
-    ?.filter((p) => Number(p.surahIndex) === Number(surahIndex))
-    .flatMap((p) =>
-      (p.verses || []).map((v) => ({
-        ...v,
-        page: p.page,
-      }))
-    ) || [];
-
-  
-
   const [surah, setSurah] = useState(null);
   const [loading, setLoading] = useState(true);
   const [clickedAyah, setClickedAyah] = useState(null);
@@ -37,9 +58,68 @@ const FetchSurahData = ({
   const verseRefs = useRef([]);
   const itemsPerPage = 10; // Number of verses per page
   const rawVerses = surah?.verses || [];
-  const { setCurrentPageNumber, setCurrentJuzNumber } = useOutletContext();
-  
+  const { setCurrentJuzNumber, setCurrentPageNumber } = useOutletContext();
 
+  /** Ayah number in surah → mushaf page (min page if duplicates). */
+  const ayahToMushafPage = useMemo(() => {
+    const m = new Map();
+    const sn = Number(surahIndex);
+    if (!pages?.length || !Number.isFinite(sn)) return m;
+
+    const assignAyahRange = (pg, start, end) => {
+      if (!Number.isFinite(pg) || pg < 1) return;
+      if (!Number.isFinite(start) || !Number.isFinite(end)) return;
+      const lo = Math.max(1, Math.min(start, end));
+      const hi = Math.max(start, end);
+      for (let ay = lo; ay <= hi; ay++) {
+        const prev = m.get(ay);
+        if (prev == null || pg < prev) m.set(ay, pg);
+      }
+    };
+
+    for (const p of pages) {
+      if (!pageBelongsToSurah(p, sn)) continue;
+      const pg = Number(p.page);
+      if (!Number.isFinite(pg) || pg < 1) continue;
+
+      if (Array.isArray(p.verses) && p.verses.length > 0) {
+        for (const v of p.verses) {
+          const ayahNum = Number(
+            v.verseNumber ?? v.ayahNumber ?? v.verse ?? v.numberInSurah
+          );
+          if (!Number.isFinite(ayahNum) || ayahNum < 1) continue;
+          const prev = m.get(ayahNum);
+          if (prev == null || pg < prev) m.set(ayahNum, pg);
+        }
+        continue;
+      }
+
+      if (Array.isArray(p.surahs)) {
+        for (const s of p.surahs) {
+          const snum = Number(s.surahNumber ?? s.surahIndex);
+          if (!Number.isFinite(snum) || snum !== sn) continue;
+          const start = Number(s.startAyah ?? s.start);
+          const end = Number(s.endAyah ?? s.end);
+          assignAyahRange(pg, start, end);
+        }
+      }
+
+      if (Array.isArray(p.ranges)) {
+        for (const r of p.ranges) {
+          const rn =
+            typeof r?.surah === "object"
+              ? Number(r?.surah?.number)
+              : Number(r?.surah);
+          if (!Number.isFinite(rn) || rn !== sn) continue;
+          const start = Number(r.start ?? r.startAyah);
+          const end = Number(r.end ?? r.endAyah);
+          assignAyahRange(pg, start, end);
+        }
+      }
+    }
+
+    return m;
+  }, [pages, surahIndex]);
 
   // Remove Bismillah for Surah != 9
   const verses =
@@ -95,20 +175,31 @@ const FetchSurahData = ({
   //   }
   // }, [surah, pages, setCurrentJuzNumber]);
 
+  /** Same surah + new translation: keep verses on screen (no full-page loader) so layout/audio UI stay stable. */
+  const prevSurahKeyRef = useRef(null);
+
   // Fetch surah data
   useEffect(() => {
-  if (surahIndex === undefined || surahIndex === null) return;
+    if (surahIndex === undefined || surahIndex === null) return;
+
+    const key = String(surahIndex);
+    const surahChanged = prevSurahKeyRef.current !== key;
+    if (surahChanged) {
+      prevSurahKeyRef.current = key;
+    }
 
     const fetchSurahDetail = async () => {
       try {
-        setLoading(true);
+        if (surahChanged) {
+          setLoading(true);
+        }
         const paddedIndex = surahIndex.toString().padStart(3, "0");
-       const res = await axios.get(
-  `http://localhost:5000/api/surahs/index/${paddedIndex}`,
-  { params: { lang: translationLang } }
-);
+        const res = await axios.get(
+          `http://localhost:5000/api/surahs/index/${paddedIndex}`,
+          { params: { lang: translationLang } }
+        );
 
-console.log("🔥 SURAH API RESPONSE:", res.data);
+        console.log("🔥 SURAH API RESPONSE:", res.data);
         setSurah(res.data || null);
       } catch (err) {
         console.error("❌ Error fetching surah detail:", err);
@@ -122,7 +213,7 @@ console.log("🔥 SURAH API RESPONSE:", res.data);
 
   // Scroll + highlight on audio track change
   useEffect(() => {
-    if (!verseRefs.current.length || currentTrack == null) return;
+    if (currentTrack == null || !surah) return;
 
     // Calculate the actual verse number from the current track
     let targetVerseNumber;
@@ -141,6 +232,9 @@ console.log("🔥 SURAH API RESPONSE:", res.data);
       // No Bismillah found, use direct mapping
       targetVerseNumber = currentTrack + 1;
     }
+
+    // Do not auto-change currentPage from audio track.
+    // Manual Next/Previous page navigation should always remain stable.
     
     // Find the verse element by its ID
     const targetElement = document.getElementById(`ayah-${targetVerseNumber}`);
@@ -159,42 +253,42 @@ console.log("🔥 SURAH API RESPONSE:", res.data);
     } else {
       console.log("⚠️ Verse element not found for ayah-", targetVerseNumber);
     }
-  }, [currentTrack, currentPage, verses]);
+  }, [currentTrack, currentPage, verses, surah, rawVerses]);
 
- useEffect(() => {
-  if (!targetAyah || !verses.length) return;
+  useEffect(() => {
+    if (targetAyah == null || !verses.length) return;
 
-  // 🔢 Ayah ka index find karo
-  const ayahIndex = verses.findIndex(
-    (v) => (v.numberInSurah ?? v.number) === Number(targetAyah)
-  );
+    const wanted = Number(targetAyah);
+    if (!Number.isFinite(wanted)) return;
 
-  if (ayahIndex === -1) return;
+    const ayahIndex = verses.findIndex(
+      (v, i) => numberInSurahForVerse(v, i) === wanted
+    );
 
-  // 📄 Us ayah ka page calculate karo
-  const targetPage = Math.floor(ayahIndex / itemsPerPage) + 1;
+    if (ayahIndex === -1) return;
 
-  // 🔁 Page change karo agar zarurat ho
-  if (targetPage !== currentPage) {
-    setCurrentPage(targetPage);
-  }
+    const targetPage = Math.floor(ayahIndex / itemsPerPage) + 1;
 
-  // ⏳ Page render hone ka wait
-  setTimeout(() => {
-    const el = document.getElementById(`ayah-${targetAyah}`);
+    if (targetPage !== currentPage) {
+      setCurrentPage(targetPage);
+      return;
+    }
+
+    const el = document.getElementById(`ayah-${wanted}`);
+
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
       el.classList.add("highlight-ayah");
-      setTimeout(() => el.classList.remove("highlight-ayah"), 2500);
+
+      setTimeout(() => {
+        el.classList.remove("highlight-ayah");
+      }, 2000);
+
+      console.log("✅ Highlight success:", wanted);
+    } else {
+      console.log("❌ Still not found AFTER render:", wanted);
     }
-  }, 300);
-}, [targetAyah, verses]);
-
-
-  useEffect(() => {
-  if (setCurrentPageNumber) setCurrentPageNumber(currentPage);
-}, [currentPage, setCurrentPageNumber]);
-
+  }, [targetAyah, currentPage, verses]);
 
   // Pagination logic
   const totalPages = Math.ceil(verses.length / itemsPerPage);
@@ -238,20 +332,121 @@ console.log("🔥 SURAH API RESPONSE:", res.data);
     setCurrentPage(1);
   }, [surahIndex]);
 
-  if (loading)
-  return (
-    <div className="loading-container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "200px" }}>
-      <div className="spinner"></div>
-    </div>
-  );
+  // Navbar: mushaf page from first visible ayah; Juz from Mongo bounds (max over visible ayahs) so
+  // same mushaf page can show Juz 2 once ayahs142+ appear (e.g. end of Juz 1 in Al-Baqarah).
+  useEffect(() => {
+    if (!verses.length || !Number.isFinite(Number(surahIndex))) return;
+
+    const startIdx = (currentPage - 1) * itemsPerPage;
+    const endIdx = Math.min(startIdx + itemsPerPage - 1, verses.length - 1);
+    if (startIdx > endIdx) return;
+
+    const ayahNums = [];
+    for (let i = startIdx; i <= endIdx; i++) {
+      ayahNums.push(numberInSurahForVerse(verses[i], i));
+    }
+
+    const firstAyah = ayahNums[0];
+    const mushafPage =
+      ayahToMushafPage.size > 0 ? ayahToMushafPage.get(firstAyah) ?? null : null;
+
+    if (mushafPage != null && typeof setCurrentPageNumber === "function") {
+      setCurrentPageNumber(mushafPage);
+    }
+
+    const controller = new AbortController();
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/api/juz/resolve-ayahs",
+          { surahNumber: Number(surahIndex), ayahs: ayahNums },
+          { signal: controller.signal, timeout: 15000 }
+        );
+        if (cancelled) return;
+        if (res.data?.success && typeof setCurrentJuzNumber === "function") {
+          const j = Number(res.data.data?.maxJuz);
+          if (Number.isInteger(j) && j >= 1 && j <= 30) {
+            setCurrentJuzNumber(j);
+          }
+        }
+      } catch (e) {
+        if (e?.code === "ERR_CANCELED" || e?.name === "CanceledError") return;
+        if (typeof setCurrentJuzNumber !== "function") return;
+        const sn = Number(surahIndex);
+        const lo = Math.min(...ayahNums);
+        const hi = Math.max(...ayahNums);
+        try {
+          const [a, b] = await Promise.all([
+            axios.get(
+              `http://localhost:5000/api/juz/for-ayah/${sn}/${lo}`,
+              { timeout: 10000 }
+            ),
+            lo !== hi
+              ? axios.get(
+                  `http://localhost:5000/api/juz/for-ayah/${sn}/${hi}`,
+                  { timeout: 10000 }
+                )
+              : Promise.resolve(null),
+          ]);
+          const j1 = Number(a?.data?.data?.juz);
+          const j2 = b ? Number(b?.data?.data?.juz) : j1;
+          const jMax = Math.max(
+            Number.isInteger(j1) && j1 >= 1 ? j1 : 0,
+            Number.isInteger(j2) && j2 >= 1 ? j2 : 0
+          );
+          if (jMax >= 1 && jMax <= 30) {
+            setCurrentJuzNumber(jMax);
+            return;
+          }
+        } catch {
+          /* use page map below */
+        }
+        if (mushafPage != null) {
+          const j = getJuzFromPage(mushafPage);
+          if (j) setCurrentJuzNumber(j);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [
+    currentPage,
+    verses,
+    surahIndex,
+    ayahToMushafPage,
+    itemsPerPage,
+    setCurrentPageNumber,
+    setCurrentJuzNumber,
+  ]);
+
+  if (loading) {
+    return <DataLoader label="Loading Surah…" size="compact" />;
+  }
 
   if (!surah) return <p>No data found.</p>;
+
+  /** Align with Quran.jsx playlist: 001/009 track k → ayah k+1; else track 0 = bismillah, track k≥1 → ayah k. */
+  const audioHighlightAyah =
+    currentTrack == null
+      ? null
+      : surah.index === "009" || surah.index === "001"
+        ? currentTrack + 1
+        : rawVerses[0]?.text?.includes("بِسْمِ")
+          ? currentTrack === 0
+            ? null
+            : currentTrack
+          : currentTrack + 1;
 
   // Handle user click inside Surah
 
 
 // Jab user verse pe click kare
-const handleVerseClick = (ayahNumber, pageNumber) => {
+const handleVerseClick = async (ayahNumber, pageNumber) => {
   setClickedAyah(ayahNumber);
 
   // Scroll + highlight
@@ -262,10 +457,28 @@ const handleVerseClick = (ayahNumber, pageNumber) => {
     setTimeout(() => el.classList.remove("highlight-ayah"), 2000);
   }
 
-  // ✅ Update Juz based on page
-  if (pageNumber && setCurrentJuzNumber) {
-    const juz = getJuzFromPage(pageNumber); // Use JuzPageMap
-    setCurrentJuzNumber(juz);
+  const mushafFromMap =
+    ayahToMushafPage.size > 0 ? ayahToMushafPage.get(Number(ayahNumber)) ?? null : null;
+  const mushafPage = pageNumber ?? mushafFromMap;
+  if (mushafPage && typeof setCurrentPageNumber === "function") {
+    setCurrentPageNumber(mushafPage);
+  }
+
+  try {
+    const res = await axios.get(
+      `http://localhost:5000/api/juz/for-ayah/${Number(surahIndex)}/${Number(ayahNumber)}`
+    );
+    if (res.data?.success && typeof setCurrentJuzNumber === "function") {
+      const j = Number(res.data.data?.juz);
+      if (Number.isInteger(j) && j >= 1 && j <= 30) {
+        setCurrentJuzNumber(j);
+      }
+    }
+  } catch {
+    if (mushafPage && typeof setCurrentJuzNumber === "function") {
+      const juz = getJuzFromPage(mushafPage);
+      if (juz) setCurrentJuzNumber(juz);
+    }
   }
 };
 
@@ -292,18 +505,22 @@ const handleVerseClick = (ayahNumber, pageNumber) => {
           <div className="reading-mode">
             {currentVerses.map((verse, idx) => {
                const globalIndex = (currentPage - 1) * itemsPerPage + idx;
-              const numberInSurah = verse.numberInSurah ?? globalIndex + 1;
+              const numberInSurah = numberInSurahForVerse(verse, globalIndex);
+              const targetN =
+                targetAyah != null ? Number(targetAyah) : null;
+              const clickedN =
+                clickedAyah != null ? Number(clickedAyah) : null;
+              const audioN =
+                audioHighlightAyah != null
+                  ? Number(audioHighlightAyah)
+                  : null;
 
               const isActive =
-                numberInSurah === targetAyah ||
-                numberInSurah === clickedAyah ||
-                numberInSurah ===
-                  (surah.index !== "009" &&
-                  rawVerses[0]?.text?.includes("بِسْمِ")
-                    ? currentTrack === 0
-                      ? 1
-                      : currentTrack + 1
-                    : currentTrack + 1);
+                (targetN != null && Number.isFinite(targetN) && numberInSurah === targetN) ||
+                (clickedN != null && Number.isFinite(clickedN) && numberInSurah === clickedN) ||
+                (audioN != null &&
+                  Number.isFinite(audioN) &&
+                  numberInSurah === audioN);
 
               return (
                 <div
@@ -325,13 +542,22 @@ const handleVerseClick = (ayahNumber, pageNumber) => {
           <div className="translation-mode">
             {currentVerses.map((verse, idx) => {
                const globalIndex = (currentPage - 1) * itemsPerPage + idx;
+              const numberInSurah = numberInSurahForVerse(verse, globalIndex);
+              const targetN =
+                targetAyah != null ? Number(targetAyah) : null;
+              const clickedN =
+                clickedAyah != null ? Number(clickedAyah) : null;
+              const audioN =
+                audioHighlightAyah != null
+                  ? Number(audioHighlightAyah)
+                  : null;
 
-  const numberInSurah =
-    verse.numberInSurah ?? globalIndex + 1;
               const isActive =
-                numberInSurah === targetAyah ||
-                numberInSurah === clickedAyah ||
-                numberInSurah === currentTrack + 1;
+                (targetN != null && Number.isFinite(targetN) && numberInSurah === targetN) ||
+                (clickedN != null && Number.isFinite(clickedN) && numberInSurah === clickedN) ||
+                (audioN != null &&
+                  Number.isFinite(audioN) &&
+                  numberInSurah === audioN);
 
               return (
                 <div
@@ -339,7 +565,7 @@ const handleVerseClick = (ayahNumber, pageNumber) => {
                   id={`ayah-${numberInSurah}`}
                  ref={(el) => (verseRefs.current[globalIndex] = el)}
                   className={`verse-block ${isActive ? "active-ayah" : ""}`}
-                  onClick={() => handleVerseClick(numberInSurah)}
+                 onClick={() => handleVerseClick(numberInSurah, verse.page)}
                 >
                   <div className="verse-arabic-text">
                     {verse.text}

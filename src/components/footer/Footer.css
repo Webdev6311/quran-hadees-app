@@ -1,0 +1,297 @@
+/* ========== Footer shell ========== */
+.app-footer {
+  position: relative;
+  margin-top: auto;
+  background: linear-gradient(180deg, #0f172a 0%, #0a0f1a 100%);
+  color: #e2e8f0;
+  overflow: hidden;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.app-footer__glow {
+  position: absolute;
+  inset: auto -20% -60% 30%;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(34, 197, 94, 0.12) 0%,
+    rgba(59, 130, 246, 0.06) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: footerGlow 12s ease-in-out infinite;
+}
+
+@keyframes footerGlow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-4%, -8%) scale(1.05);
+  }
+}
+
+.app-footer__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 32px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .app-footer__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 40px 20px 28px;
+  }
+}
+
+/* ========== Brand ========== */
+.app-footer__logo {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: linear-gradient(120deg, #f8fafc 0%, #86efac 45%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+  transition: transform 0.25s ease;
+}
+
+.app-footer__brand:hover .app-footer__logo {
+  transform: translateX(2px);
+}
+
+.app-footer__tagline {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #94a3b8;
+  max-width: 280px;
+}
+
+.app-footer__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.app-footer__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  color: #cbd5e1;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.app-footer__badge:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.35);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.app-footer__badge svg {
+  font-size: 11px;
+  opacity: 0.9;
+}
+
+/* ========== Nav links ========== */
+.app-footer__heading {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.app-footer__nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.app-footer__link {
+  position: relative;
+  display: inline-block;
+  padding: 6px 0;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.app-footer__link:hover,
+.app-footer__link:focus-visible {
+  color: #86efac;
+}
+
+.app-footer__link:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.app-footer__link-line {
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.app-footer__link:hover .app-footer__link-line,
+.app-footer__link:focus-visible .app-footer__link-line {
+  transform: scaleX(1);
+}
+
+/* ========== CTA column ========== */
+.app-footer__cta-text {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #94a3b8;
+}
+
+.app-footer__mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.app-footer__mail:hover {
+  transform: translateY(-2px);
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(147, 197, 253, 0.45);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
+}
+
+.app-footer__mail:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+.app-footer__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(15, 23, 42, 0.6);
+  color: #cbd5e1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.app-footer__top:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #86efac;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+.app-footer__top:focus-visible {
+  outline: 2px solid #22c55e;
+  outline-offset: 3px;
+}
+
+.app-footer__top svg {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.app-footer__top:hover svg {
+  transform: translateY(-3px);
+}
+
+/* ========== Bottom bar ========== */
+.app-footer__bottom {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  padding: 18px 24px;
+  text-align: center;
+}
+
+.app-footer__copy {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* ========== Layout: push footer down ========== */
+@media (prefers-reduced-motion: reduce) {
+  .app-footer__glow {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .app-footer__link-line {
+    transition: none;
+  }
+
+  .app-footer__link:hover .app-footer__link-line,
+  .app-footer__link:focus-visible .app-footer__link-line {
+    transform: scaleX(1);
+  }
+
+  .app-footer__badge:hover,
+  .app-footer__mail:hover,
+  .app-footer__top:hover,
+  .app-footer__brand:hover .app-footer__logo {
+    transform: none;
+  }
+
+  .app-footer__top:hover svg {
+    transform: none;
+  }
+}

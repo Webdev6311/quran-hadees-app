@@ -19,7 +19,7 @@ const RightSidebar = ({ isOpen, onClose }) => {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
   }, [isOpen, onClose]);
 

@@ -16,6 +16,22 @@ export const getJuzFromPage = (pageNumber) => {
 };
 
 /**
+ * Juz for Page tab: prefer Mongo/API payload (`data.juz` or per-verse `juzNumber` from `pages` collection).
+ * Uses max juz when one mushaf page spans a juz boundary. Falls back to JuzPageMap for legacy page docs.
+ */
+export const resolveJuzFromPageApiData = (pageData, pageNumber) => {
+  if (pageData && pageData.juz != null) {
+    const top = Number(pageData.juz);
+    if (Number.isInteger(top) && top >= 1 && top <= 30) return top;
+  }
+  const fromVerses = (pageData?.verses || [])
+    .map((v) => Number(v.juzNumber))
+    .filter((n) => Number.isInteger(n) && n >= 1 && n <= 30);
+  if (fromVerses.length > 0) return Math.max(...fromVerses);
+  return getJuzFromPage(pageNumber);
+};
+
+/**
  * Calculate Juz number for a Surah based on its first page
  * @param {number} surahNumber - The Surah number (1-114)
  * @param {Array} pages - Array of page objects with surahIndex and page properties
@@ -42,19 +58,20 @@ export const getJuzFromSurah = (surahNumber, pages) => {
 /**
  * Fallback page mapping for common surahs when page data is not available
  */
+/* Madani mushaf–style first page per surah (1–604); must stay monotonic-ish vs surah order */
 const SURAH_PAGE_FALLBACK = {
   1: 1, 2: 2, 3: 50, 4: 77, 5: 106, 6: 128, 7: 151, 8: 177, 9: 187, 10: 208,
-  11: 221, 12: 237, 13: 249, 14: 255, 15: 262, 16: 267, 17: 291, 18: 297, 19: 304, 20: 312,
-  21: 322, 22: 332, 23: 342, 24: 350, 25: 359, 26: 367, 27: 377, 28: 383, 29: 396, 30: 404,
-  31: 411, 32: 415, 33: 424, 34: 432, 35: 440, 36: 446, 37: 453, 38: 457, 39: 467, 40: 477,
-  41: 483, 42: 490, 43: 497, 44: 504, 45: 511, 46: 517, 47: 523, 48: 531, 49: 539, 50: 545,
-  51: 551, 52: 558, 53: 565, 54: 571, 55: 577, 56: 583, 57: 589, 58: 595, 59: 601, 60: 607,
-  61: 372, 62: 376, 63: 380, 64: 384, 65: 388, 66: 392, 67: 396, 68: 400, 69: 404, 70: 408,
-  71: 422, 72: 426, 73: 430, 74: 434, 75: 438, 76: 442, 77: 446, 78: 582, 79: 586, 80: 590,
-  81: 472, 82: 476, 83: 480, 84: 484, 85: 488, 86: 492, 87: 496, 88: 500, 89: 504, 90: 508,
-  91: 512, 92: 516, 93: 520, 94: 524, 95: 528, 96: 532, 97: 536, 98: 540, 99: 544, 100: 548,
-  101: 522, 102: 525, 103: 528, 104: 531, 105: 534, 106: 537, 107: 540, 108: 582, 109: 586, 110: 590,
-  111: 596, 112: 600, 113: 604, 114: 609
+  11: 221, 12: 235, 13: 249, 14: 255, 15: 262, 16: 267, 17: 282, 18: 293, 19: 305, 20: 312,
+  21: 322, 22: 332, 23: 342, 24: 350, 25: 359, 26: 367, 27: 377, 28: 385, 29: 396, 30: 404,
+  31: 411, 32: 415, 33: 418, 34: 428, 35: 434, 36: 440, 37: 446, 38: 453, 39: 458, 40: 467,
+  41: 477, 42: 483, 43: 489, 44: 496, 45: 499, 46: 502, 47: 507, 48: 511, 49: 515, 50: 518,
+  51: 520, 52: 523, 53: 526, 54: 528, 55: 531, 56: 534, 57: 537, 58: 542, 59: 545, 60: 549,
+  61: 551, 62: 553, 63: 554, 64: 556, 65: 558, 66: 560, 67: 562, 68: 564, 69: 566, 70: 568,
+  71: 570, 72: 572, 73: 574, 74: 575, 75: 577, 76: 578, 77: 580, 78: 582, 79: 583, 80: 585,
+  81: 586, 82: 587, 83: 587, 84: 589, 85: 590, 86: 591, 87: 591, 88: 592, 89: 594, 90: 595,
+  91: 596, 92: 597, 93: 598, 94: 598, 95: 599, 96: 599, 97: 600, 98: 601, 99: 601, 100: 602,
+  101: 602, 102: 603, 103: 603, 104: 604, 105: 604, 106: 604, 107: 605, 108: 605, 109: 606, 110: 606,
+  111: 606, 112: 607, 113: 607, 114: 608,
 };
 
 /**

@@ -4,12 +4,12 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   width: 800px;
-  margin: 252px;
-  margin-right: 187px;
+ 
   position: relative;
   z-index: 1000;
   animation: slideDown 0.3s ease-out;
   box-sizing: border-box;
+   margin: 120px auto;
 }
 
 .popular-header {
@@ -19,6 +19,55 @@
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #eee;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .popular-box {
+    width: 90%;
+    max-width: 400px;
+
+    /* Old margins remove */
+    margin: 0;
+
+    /* Center the box */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 1rem;
+    border-radius: 10px;
+
+    /* Mobile shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: 1000;
+  }
+
+  .popular-header {
+    margin-bottom: 0.8rem;
+  }
+
+  .popular-title {
+    font-size: 1rem;
+  }
+
+  .popular-tags {
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .popular-tag {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .popular-extra {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9rem;
+  }
 }
 
 .popular-title {
@@ -109,7 +158,7 @@
   align-items: flex-start;
   padding-top: 2rem;
   z-index: 999;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 /* Animation */

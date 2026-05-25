@@ -37,6 +37,7 @@
   padding: 30px;
   background: #fff;
   border-radius: 10px;
+  margin-top: -58px;
 }
 
 /* Each Surah block */
@@ -69,8 +70,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 15px;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.action-btn {
+  width: 232px;         /* Aap isey apni screen k mutabik barha ya kam kar sakte hain */
+  height: 40px;         /* Dono ki height same rakhne k liye */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+  box-sizing: border-box;
+}
+.btn-info {
+  background-color: #e2e8f0; /* Light gray background jesa picture me hai */
+  color: #000;
 }
 
 .information-btn {
@@ -87,18 +106,41 @@
 }
 
 .play-surah-btn {
- 
+ background-color: #e2e8f0;
   color:black;
   border: none;
-  padding: 6px 12px;
+  padding: 24px 12px;
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
 }
 
-.play-surah-btn:hover {
-  background-color: #43a047;
+.surah-info-wrapper {
+  position: relative;   
+  
 }
+
+@media (max-width: 768px) {
+  .surah-buttons {
+    flex-direction: column; /* Buttons aik dusre ke niche aa jayeinge */
+    gap: 10px;              /* Unke darmiyan thora gap */
+    padding: 0 15px;        /* Side se thori space */
+    box-sizing: border-box;
+  }
+
+  .action-btn, 
+  .play-surah-btn {
+    width: 100%;            /* Mobile par width automatic full (responsive) ho jaye gi */
+    max-width: 320px;       /* Boht zyada baray na hon isliye limit laga di */
+  }
+
+  .juz-container {
+    padding: 15px;          /* Mobile screen par container padding thori kam */
+    margin-top: -20px;
+  }
+}
+
+
 
 /* Verses */
 .verses-list {
@@ -130,28 +172,19 @@
   font-weight: bold;
   margin-left: 5px;
 }
-.audio-player-fixed {
-  position: fixed;
-  bottom: 10px;
-  left: 470px;
-  right: 0; /* ensures it touches both edges */
-  width: 50vw; /* ✅ force full viewport width */
+.juz-audio-player-fixed {
+ position: fixed;
+ bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: calc(100% - 24px);
+  width: min(720px, calc(100% - 24px));
   height: 56px;
   background: #fff;
-  border: 2px solid #383737;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
   z-index: 9999;
-  outline: none;
-  margin: 0;
   border-radius: 18px;
-  display: block;
-}
-
-audio {
-  width: 100%;
-  max-width: 1055px;
-  margin: 0 auto;
-  display: block;
+  box-sizing: border-box;
 }
 
 

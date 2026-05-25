@@ -1,75 +1,115 @@
 
-.content {
-  margin-top: 100px;   /* ✅ prevents content overlap with navbar */
-  padding: 20px;
+html,
+body,
+#root {
+  max-width: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
 
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.content {
+  padding: 20px;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  overflow: visible;
+}
+
+/* Quran landing: flush with navbar (90px), full-width hero — no white gap or side inset */
+main.content:has(.quran-landing) {
+  margin-top: 90px;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Contact: edge-to-edge hero + form band (no side gutters from .content padding) */
+main.content:has(.contact-page) {
+  margin-top: 90px;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Hadith: flush below fixed navbar; no side padding (hero + reader are full-width) */
+main.content:has(.hadith-bd-page) {
+  margin-top: 90px;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .navbar {
-  position: fixed;          /* ✅ fixed in place */
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  width: 100vw;             /* ✅ cover full viewport width */
-  z-index: 100;
+  width: 100%;
+  max-width: 100%;
+  z-index: 1000;
   background: #0f172a;
-  height: 90px;
+  --navbar-h: 70px;
+  min-height: var(--navbar-h);
   color: white;
   display: flex;
-  /* align-items: center; */
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
-
 
 .nav-inner {
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 12px;
   width: 100%;
-  padding: 0 24px;
+  min-width: 0;
+  padding: 12px 20px;
   box-sizing: border-box;
-  margin: 0;
 }
 
-/* .juz-pill{
-  
-  font-size: 13px;
-  font-weight: 600;
-} */
 .navbar-bottom-juz {
-  position: absolute;
-  right: 30px;        /* 👈 aligns below the page links */
-  bottom: -18px;      /* 👈 controls vertical gap under navbar */
-}
-
-.navbar-bottom-juz{
-  font-size: 13px;
-  /* font-weight: 600; */
   font-size: 18px;
   padding: 4px 10px;
   border-radius: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  margin: 25px;
-  margin-right: 218px;
 }
 
 /* LEFT SIDE */
 .left-nav {
   display: flex;
   align-items: flex-start;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .logo-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 0;
 }
 
 .top-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
 }
 
 .menu-toggle {
@@ -84,6 +124,8 @@
   font-size: 20px;
   font-weight: 700;
   color: white;
+  line-height: 1.2;
+  word-break: break-word;
 }
 
 /* BELOW LOGO (up/down icon + surah name) */
@@ -115,70 +157,73 @@
 }
 
 .current-surah.placeholder {
-  color:orange;
+  color: orange;
+}
+
+/* Hamburger: hidden on desktop */
+.mobile-menu-btn {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  margin: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mobile-menu-btn:focus-visible {
+  outline: 2px solid #22c55e;
+  outline-offset: 2px;
 }
 
 /* RIGHT SIDE CONTAINER */
 .nav-right {
   display: flex;
   align-items: center;
-  height: 100%;
-  margin-left: auto; /* Push everything to the right */
+  margin-left: auto;
+  min-width: 0;
+  position: relative;
 }
 
-/* JUZ PILL STYLES */
+/* Desktop: backdrop unused */
+.nav-mobile-backdrop {
+  display: none;
+}
+
 .current-juz {
   display: flex;
   align-items: center;
-  height: 100%;
   padding: 0 15px;
-  margin-left: 20px; /* Add space between nav links and juz pill */
-  border-left: 1px solid rgba(255, 255, 255, 0.1); /* Optional: add a subtle separator */
+  margin-left: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* .juz-pill {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 20px;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-} */
-
-/* RIGHT LINKS */
+/* RIGHT LINKS — desktop */
 .nav-links {
   list-style: none;
   display: flex;
-  /* align-items: center; */
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
-  margin-top: 55px;
+  margin: 0;
   padding: 0 15px 0 0;
-  height: 100%;
 }
 
 .nav-links li {
   display: flex;
-  /* align-items: center; */
-  height: 100%;
-}
-
-.nav-links a {
-  display: flex;
-  /* align-items: center; */
-  height: 100%;
-  padding: 0 10px;
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: 0.2s;
-}
-
-.nav-links a:hover {
-  background: rgba(255, 255, 255, 0.08);
+  align-items: center;
 }
 
 .nav-links li a {
@@ -188,69 +233,195 @@
   padding: 6px 10px;
   border-radius: 8px;
   transition: 0.2s;
-}
-
-.nav-links li a:hover {
-  background: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
 }
 
 .nav-links li a.active {
   background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
 }
 
-/* MOBILE */
-@media (max-width: 820px) {
-  .nav-right {
-    gap: 15px;
-  }
-  
-  .nav-links {
-    display: none;
-  }
-  .nav-links.show {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 90px;
-    right: 20px;
-    background: #0f172a;
-    border-radius: 10px;
-    padding: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-  }
-}
-
-
-
-
-
 /* Wrapper for page number + juz */
 .navbar-right-info {
-  position: absolute;
-  right: 24px;      /* navbar ke right edge se gap */
-  top: 80%;         /* vertically center in navbar */
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 15px;        /* page number aur juz ke beech gap */
+  gap: 12px;
   font-size: 18px;
   font-weight: 600;
   color: white;
+  flex-shrink: 0;
+  min-width: 0;
 }
 
-/* Page number */
 .navbar-page-number {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 4px 10px;
   border-radius: 8px;
 }
 
-/* Juz number */
 .navbar-juz-number {
- 
   padding: 4px 10px;
   border-radius: 8px;
   color: white;
 }
 
+/* Root layout: keep interactive footer at bottom on short pages */
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100%;
+}
 
+.layout > main.content {
+  flex: 1 0 auto;
+}
+
+@media (max-width: 430px) {
+  main.content:has(.quran-landing),
+  main.content:has(.contact-page),
+  main.content:has(.hadith-bd-page) {
+    margin-top: 68px;
+  }
+}
+
+@media (max-width: 820px) {
+  .nav-inner {
+    flex-wrap: nowrap;
+    align-items: center;
+    column-gap: 10px;
+    padding: 10px 14px;
+    min-height: 56px;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .nav-right {
+    flex: 0 0 auto;
+    width: auto;
+    margin-left: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-mobile-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    background: rgba(15, 23, 42, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.28s ease,
+      visibility 0.28s ease;
+  }
+
+  .nav-mobile-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: min(300px, 85%);
+    max-width: 320px;
+    margin: 0;
+    padding: calc(var(--navbar-h) + env(safe-area-inset-top, 0px)) 0
+      max(16px, env(safe-area-inset-bottom, 0px));
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 4px;
+    background: #0f172a;
+    box-shadow: -8px 0 28px rgba(0, 0, 0, 0.4);
+    z-index: 1002;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    list-style: none;
+    transform: translateX(100%);
+    opacity: 1;
+    pointer-events: none;
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: none;
+    max-height: none;
+  }
+
+  .nav-links.show {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+
+  .nav-links li {
+    width: 100%;
+    max-width: 100%;
+    justify-content: stretch;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    max-width: 100%;
+    min-height: 48px;
+    padding: 14px 22px;
+    font-size: 17px;
+    justify-content: flex-start;
+    border-radius: 0;
+  }
+
+  .nav-links li a:active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .navbar-right-info {
+    display: none !important;
+  }
+
+  .logo-text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 430px) {
+  .navbar {
+    --navbar-h: 56px;
+    min-height: 56px;
+  }
+
+  .nav-inner {
+    padding: 8px 12px;
+    column-gap: 8px;
+    min-height: 52px;
+  }
+
+  .logo-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 390px) {
+  .nav-inner {
+    padding: 8px 10px;
+  }
+
+  .logo-text {
+    font-size: 13px;
+  }
+
+  .mobile-menu-btn {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 6px;
+  }
+}

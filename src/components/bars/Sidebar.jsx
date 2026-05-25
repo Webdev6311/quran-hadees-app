@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { FaTimes } from "react-icons/fa";
 import axios from "axios";
+import DataLoader from "../DataLoader";
 import "./Sidebar.css";
 
 import { JuzPageMap } from "../../pages/JuzPageMap";
-import { getJuzFromSurahFallback } from "../../utils/juzUtils";
 
 const Sidebar = ({
   isOpen,
@@ -31,8 +31,15 @@ const Sidebar = ({
   const [error, setError] = useState(null);
   const [searchPage, setSearchPage] = useState("");
   const [pagesList, setPagesList] = useState([]);
+  const [activeVerse, setActiveVerse] = useState(null);
+  const [activeJuz, setActiveJuz] = useState(null);
+  const [activePage, setActivePage] = useState(null);
   
   const TOTAL_PAGES = 647;
+
+  const closeSidebar = () => {
+    if (typeof onClose === "function") onClose();
+  };
 
   useEffect(() => {
     const simplePages = Array.from({ length: TOTAL_PAGES }, (_, i) => ({
@@ -71,7 +78,9 @@ const Sidebar = ({
   
   const handleClickPage = (pageNumber) => {
     console.log("📄 Clicked page:", pageNumber);
-    onPageSelect(pageNumber);
+    setActivePage(pageNumber);
+    onPageSelect?.(pageNumber);
+    closeSidebar();
   };
 
   const handleVerseClick = async (surahNumber, verseNumber) => {
@@ -80,6 +89,10 @@ const Sidebar = ({
       
       // ✅ Convert surahNumber to number (it might be "006" or "6")
       const surahNum = Number(surahNumber);
+      setActiveVerse({
+  surah: Number(surahNumber),
+  verse: Number(verseNumber)
+});
       
       const surahPageMap = {
         1: 1, 2: 2, 3: 50, 4: 77, 5: 106, 6: 128, 7: 151, 8: 177, 9: 187, 10: 208,
@@ -115,11 +128,12 @@ const Sidebar = ({
       }
 
       // ✅ Call onVerseSelect with proper data (no API call needed, endpoint doesn't exist)
-      onVerseSelect({
+      onVerseSelect?.({
         surahNumber: surahNum,
         verseNumber: Number(verseNumber),
         page: surahPageMap[surahNum] || 1
       });
+      closeSidebar();
     } catch (err) {
       console.error("Error in handleVerseClick:", err);
     }
@@ -144,36 +158,26 @@ const Sidebar = ({
     });
   };
 
-  const groupSurahsByJuz = (surahs) => {
-    const grouped = {};
-    for (let i = 1; i <= 30; i++) grouped[i] = [];
-    surahs.forEach((surah) => {
-      const juz = getJuzFromSurahFallback(Number(surah.index));
-      if (juz && grouped[juz]) grouped[juz].push(surah);
-    });
-    return grouped;
-  };
-  
-  const filteredSurahs = filterSurahs(allSurahs);
-  const surahsByJuz = groupSurahsByJuz(filteredSurahs);
+  /** Canonical order 1–114 (Surah tab is not grouped by juz — avoids wrong order from bad juz buckets). */
+  const filteredSurahs = useMemo(() => {
+    const list = filterSurahs(allSurahs);
+    return [...list].sort((a, b) => Number(a.index) - Number(b.index));
+  }, [allSurahs, searchTerm]);
   
   const filterVerses = (verses = []) => {
     if (!verseSearchTerm.trim()) return verses;
     const term = verseSearchTerm.toLowerCase();
     return verses.filter((v) => {
       const text = (v.text || "").toLowerCase();
-      const number = String(v.number || "");
+      const num = v.numberInSurah ?? v.number;
+      const number = String(num ?? "");
       return text.includes(term) || number.startsWith(term);
     });
   };
 
   const renderSurahTab = () => {
     if (isLoading) {
-      return (
-        <div style={{ textAlign: "center", padding: "20px" }}>
-          <div className="spinner"></div>
-        </div>
-      );
+      return <DataLoader size="compact" label="Loading surahs…" />;
     }
     if (error) {
       return (
@@ -192,38 +196,31 @@ const Sidebar = ({
     
     return (
       <div className="surah-list">
-        {Object.entries(surahsByJuz)
-          .filter(([juz, surahs]) => surahs.length > 0)
-          .map(([juz, surahs]) => (
-            <div key={juz} className="juz-group">
-              {surahs.map((surah) => {
-                const isSelected = Number(selectedSurahId) === Number(surah.index);
-                return (
-                  <div
-                    key={surah.index}
-                    className={`sidebar-link surah-item ${isSelected ? "active" : ""}`}
-                    onClick={() => onSurahSelect && onSurahSelect(surah)}
-                  >
-                    <span className="surah-number">{parseInt(surah.index, 10)}</span>
-                    <span className="surah-name">
-                      {(surah.englishName || surah.name || "Unknown")}
-                    </span>
-                  </div>
-                );
-              })}
+        {filteredSurahs.map((surah) => {
+          const isSelected = Number(selectedSurahId) === Number(surah.index);
+          return (
+            <div
+              key={surah.index}
+              className={`sidebar-link surah-item ${isSelected ? "active" : ""}`}
+              onClick={() => {
+                onSurahSelect?.(surah);
+                closeSidebar();
+              }}
+            >
+              <span className="surah-number">{parseInt(surah.index, 10)}</span>
+              <span className="surah-name">
+                {surah.englishName || surah.name || "Unknown"}
+              </span>
             </div>
-          ))}
+          );
+        })}
       </div>
     );
   };
 
   const renderVerseTab = () => {
     if (isLoading) {
-      return (
-        <div style={{ textAlign: "center", padding: "20px" }}>
-          <div className="spinner"></div>
-        </div>
-      );
+      return <DataLoader size="compact" label="Loading surahs…" />;
     }
     if (error) {
       return (
@@ -365,7 +362,9 @@ const Sidebar = ({
               <span className="surah-number">{parseInt(surah.index, 10)}</span>
               <span className="surah-name">{surah.englishName || surah.name || "Unknown"}</span>
               {isVerseLoading[normalizedIndex] && (
-                <span className="loading-indicator" style={{ marginLeft: 'auto', fontSize: '12px' }}>⏳</span>
+                <span className="sidebar-row-loader" aria-hidden>
+                  <span className="data-loader__ring data-loader__ring--tiny" />
+                </span>
               )}
             </div>
             );
@@ -393,8 +392,10 @@ const Sidebar = ({
                   />
                   {verseSearchTerm && (
                     <button
-                      className="close-btn"
+                      type="button"
+                      className="sidebar-verse-clear-btn"
                       onClick={() => setVerseSearchTerm("")}
+                      aria-label="Clear verse filter"
                     >
                       ×
                     </button>
@@ -404,18 +405,23 @@ const Sidebar = ({
               
               <div className="verse-numbers-container">
                 {isLoadingVerses ? (
-                  <div style={{ textAlign: "center", padding: "20px" }}>
-                    <div className="spinner-small"></div>
-                    <div>Loading verses...</div>
-                  </div>
+                  <DataLoader
+                    size="compact"
+                    label="Loading verses…"
+                    className="sidebar-verse-loader"
+                  />
                 ) : verses && verses.length > 0 ? (
                   filterVerses(verses).map((verse) => {
-                    const verseNumber = verse.number;
+                    const verseNumber = verse.numberInSurah ?? verse.number;
+                    const isActive =
+  activeVerse &&
+  activeVerse.surah === Number(normalizedExpanded) &&
+  activeVerse.verse === Number(verseNumber);
                     const uniqueKey = `surah-${normalizedExpanded}-verse-${verseNumber}`;
                     return (
                       <div
                         key={uniqueKey}
-                        className="verse-number-item"
+                       className={`verse-number-item ${isActive ? "active-verse" : ""}`}
                         onClick={() => handleVerseClick(normalizedExpanded, verseNumber)}
                       >
                         {verseNumber}
@@ -437,10 +443,26 @@ const Sidebar = ({
 
   const juzList = Array.from({ length: 30 }, (_, i) => `Juz ${i + 1}`);
 
+  /** "page 544", "Page 123", "p 12", "544" → digits for prefix match against 1–647 */
+  const normalizePageSearchDigits = (raw) => {
+    const trimmed = String(raw || "").trim();
+    if (!trimmed) return "";
+    let s = trimmed.toLowerCase();
+    s = s.replace(/^page\s*/i, "").trim();
+    s = s.replace(/^p\.\s*/i, "").trim();
+    s = s.replace(/^p\s+/i, "").trim();
+    s = s.replace(/\s/g, "");
+    return s.replace(/\D/g, "");
+  };
+
   const renderPageTab = () => {
+    const pageDigits = normalizePageSearchDigits(searchPage);
     const filteredPages = pagesList.filter((p) => {
-      if (!searchPage) return true;
-      return p.page.toString().includes(searchPage);
+      if (!searchPage.trim()) return true;
+      if (pageDigits) {
+        return String(p.page).startsWith(pageDigits);
+      }
+      return p.page.toString().includes(searchPage.trim());
     });
 
     return (
@@ -451,7 +473,7 @@ const Sidebar = ({
           filteredPages.map((p) => (
             <div
               key={p.page}
-              className="sidebar-link page-item"
+             className={`sidebar-link page-item ${activePage === p.page ? "active" : ""}`}
               onClick={() => handleClickPage(p.page)}
             >
               Page {p.page}
@@ -483,13 +505,17 @@ const Sidebar = ({
             {filteredJuzList.map((juzText) => {
               const juzNumber = parseInt(juzText.replace("Juz ", ""), 10);
               return (
-                <div
-                  key={juzNumber}
-                  className="sidebar-link"
-                  onClick={() => onJuzSelect(juzNumber)}
-                >
-                  <span>{juzText}</span>
-                </div>
+               <div
+  key={juzNumber}
+  className={`sidebar-link ${activeJuz === juzNumber ? "active" : ""}`}
+  onClick={() => {
+    setActiveJuz(juzNumber);
+    onJuzSelect?.(juzNumber);
+    closeSidebar();
+  }}
+>
+  <span>{juzText}</span>
+</div>
               );
             })}
           </div>
@@ -505,7 +531,12 @@ const Sidebar = ({
   return (
     <div className={`sidebar ${isOpen ? "open" : ""}`}>
       <div className="sidebar-header">
-        <button className="close" onClick={onClose}>
+        <button
+          type="button"
+          className="sidebar-close-btn"
+          onClick={onClose}
+          aria-label="Close sidebar"
+        >
           <FaTimes />
         </button>
       </div>
@@ -546,7 +577,7 @@ const Sidebar = ({
   activeTab === "surah" ? "Search Surah" :
   activeTab === "verse" ? "Search Surah" :
   activeTab === "juz" ? "Search Juz" :
-  activeTab === "page" ? "Search Page" :
+  activeTab === "page" ? "Page 544, page 123, or 12…" :
   "Search"
 }
       className="search-input"

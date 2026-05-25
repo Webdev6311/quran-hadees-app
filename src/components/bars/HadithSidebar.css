@@ -1,0 +1,325 @@
+.hadith-sidebar {
+  position: fixed;
+  top: 70px;
+  left: -300px;
+  width: 280px;
+  height: calc(100% - 70px);
+  background-color: #0d1b2a;
+  color: #fff;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hadith-sidebar.open {
+  left: 0;
+  animation: sidebarIn 0.3s ease;
+}
+
+.hadith-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.hadith-close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.hadith-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+  transform: rotate(90deg);
+}
+
+.hadith-toggle-tabs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1b263b;
+  border: 1px solid #415a77;
+  border-radius: 18px;
+  padding: 4px;
+  margin-bottom: 0;
+}
+
+.hadith-toggle-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 13px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 18px;
+  transition: all 0.25s ease;
+}
+
+.hadith-toggle-btn.active {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.22);
+}
+
+.hadith-search-wrap {
+  margin-bottom: 10px;
+}
+
+.hadith-search-input {
+  width: 91%;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hadith-search-input:focus {
+  box-shadow: 0 0 0 2px rgba(147, 197, 253, 0.4);
+  transform: translateY(-1px);
+}
+
+.hadith-sidebar-menu {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(203, 213, 225, 0.55) transparent;
+}
+
+.hadith-sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 10px;
+  animation: fadeSlide 0.25s ease;
+}
+
+.hadith-sidebar-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: #1b263b;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.hadith-sidebar-item:hover {
+  transform: translateX(4px);
+  background: #2a3b56;
+}
+
+.hadith-sidebar-item.active {
+  background: #fff;
+  color: #000;
+  transform: translateX(4px);
+}
+
+.hadith-chapter-main {
+  display: block;
+  flex: 1;
+}
+
+.hadith-chapter-count {
+  margin-left: auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hadith-sidebar-item.active .hadith-chapter-count {
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.hadith-book-icon-wrap {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.16);
+  flex-shrink: 0;
+}
+
+.hadith-book-icon {
+  font-size: 13px;
+  animation: floatIcon 2.6s ease-in-out infinite;
+}
+
+.hadith-sidebar-item.active .hadith-book-icon-wrap {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+.hadith-sidebar-empty {
+  color: #cbd5e1;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.hadith-sidebar-loader.data-loader--compact {
+  min-height: 120px;
+}
+
+.hadith-sidebar-loader .data-loader__label {
+  color: #cbd5e1;
+}
+
+.hadith-sidebar-loader .data-loader__ring {
+  border-color: rgba(226, 232, 240, 0.25);
+  border-top-color: #38bdf8;
+}
+
+.hadith-numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.hadith-number-item {
+  border: none;
+  border-radius: 999px;
+  background: #1b263b;
+  color: #fff;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 13px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.hadith-number-item:hover {
+  transform: translateY(-2px);
+  background: #2a3b56;
+}
+
+.hadith-number-item.active {
+  background: #fff;
+  color: #000;
+}
+
+.hadith-number-item span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.hadith-number-item:hover span {
+  transform: scale(1.06);
+}
+
+.hadith-sidebar-menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.hadith-sidebar-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hadith-sidebar-menu::-webkit-scrollbar-thumb {
+  background: rgba(203, 213, 225, 0.55);
+  border-radius: 999px;
+}
+
+.hadith-sidebar-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(203, 213, 225, 0.85);
+}
+
+@keyframes sidebarIn {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+}
+ /* ================= MOBILE SIDEBAR ================= */
+
+/* ================= MOBILE SIDEBAR ================= */
+
+@media (max-width: 768px) {
+  .hadith-sidebar {
+    width: 100%;
+    left: -100%;
+    top: 0;
+    height: 100vh;
+    border-radius: 0;
+    padding: 18px 12px 12px;
+    padding-top: 70px;
+    box-sizing: border-box;
+  }
+
+  .hadith-sidebar.open {
+    left: 0;
+  }
+
+  .hadith-sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hadith-toggle-tabs {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hadith-close-btn {
+    flex-shrink: 0;
+  }
+
+  .hadith-search-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+  

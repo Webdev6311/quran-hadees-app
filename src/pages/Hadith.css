@@ -1,0 +1,505 @@
+.hadith-hero {
+  /* position: relative; */
+  overflow-y: hidden;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  right: 0;
+ 
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  
+  top: 0;
+  bottom: 0;
+  border-radius: 0;
+  isolation: isolate;
+}
+
+
+
+.hadith-hero-gradient,
+.hadith-hero-photo,
+.hadith-hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+/* Fallback colour if photo is slow or missing */
+/* .hadith-hero-gradient {
+  z-index: 0;
+  background: linear-gradient(165deg, #4a3018 0%, #2a1810 45%, #15100c 100%);
+  pointer-events: none;
+} */
+
+/* User Masjid an-Nabawi panorama — public/images/hadith-hero/masjid-nabawi-hero.png */
+.hadith-hero-photo {
+  z-index: 1;
+  background-image: url("/images/hadith-hero/masjid-nabawi-hero.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  pointer-events: none;
+}
+
+.hadith-hero-overlay {
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(12, 8, 6, 0.08) 0%, rgba(14, 10, 8, 0.28) 38%, rgba(10, 8, 6, 0.62) 100%);
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Exactly 3 birds, upper sky only — slow CSS motion (no WebGL). */
+.hadith-hero-birds {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 46%;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+/* Hadith reader prompts — full content width (scoped so global .page-sub on About/Contact unaffected) */
+.hadith-reading-mode .page-sub {
+  color: #f4f5f6;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  margin: 20px 0 30px;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  left: auto;
+  transform: none;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+
+.hadith-reading-mode .page-sub::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ebedf1, #8b5cf6);
+  border-radius: 2px;
+}
+
+.hadith-bird {
+  position: absolute;
+  left: 0;
+  width: clamp(24px, 3.8vw, 42px);
+  color: rgba(32, 26, 20, 0.52);
+  filter: drop-shadow(0 0 6px rgba(255, 210, 140, 0.12));
+  will-change: transform;
+}
+
+.hadith-bird svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hadith-bird--1 {
+  top: 14%;
+  animation: hadithBirdDriftLtr 62s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.hadith-bird--2 {
+  top: 28%;
+  width: clamp(20px, 3.2vw, 36px);
+  color: rgba(28, 22, 18, 0.44);
+  animation: hadithBirdDriftRtl 78s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation-delay: -24s;
+}
+
+.hadith-bird--3 {
+  top: 8%;
+  width: clamp(28px, 4.2vw, 48px);
+  color: rgba(36, 30, 24, 0.48);
+  animation: hadithBirdDriftLtrSlow 92s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  animation-delay: -48s;
+}
+
+@keyframes hadithBirdDriftLtr {
+  0% {
+    transform: translate3d(-12vw, 0, 0);
+  }
+  22% {
+    transform: translate3d(22vw, -8px, 0);
+  }
+  48% {
+    transform: translate3d(48vw, 4px, 0);
+  }
+  72% {
+    transform: translate3d(72vw, -6px, 0);
+  }
+  100% {
+    transform: translate3d(108vw, 2px, 0);
+  }
+}
+
+@keyframes hadithBirdDriftRtl {
+  0% {
+    transform: translate3d(108vw, 4px, 0) scaleX(-1);
+  }
+  25% {
+    transform: translate3d(72vw, -6px, 0) scaleX(-1);
+  }
+  50% {
+    transform: translate3d(42vw, 3px, 0) scaleX(-1);
+  }
+  75% {
+    transform: translate3d(18vw, -4px, 0) scaleX(-1);
+  }
+  100% {
+    transform: translate3d(-14vw, 0, 0) scaleX(-1);
+  }
+}
+
+@keyframes hadithBirdDriftLtrSlow {
+  0% {
+    transform: translate3d(-18vw, 6px, 0);
+  }
+  33% {
+    transform: translate3d(35vw, -12px, 0);
+  }
+  66% {
+    transform: translate3d(68vw, 5px, 0);
+  }
+  100% {
+    transform: translate3d(112vw, -4px, 0);
+  }
+}
+
+.hadith-hero .search-content {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+  width: min(100%, 800px);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.search-container.hadith-hero.hadith-hero-with-sidebar .search-content {
+  width: min(800px, calc(100vw - 320px));
+  transform: translateX(140px);
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hadith-hero .search-input-container,
+.hadith-hero .search-buttons,
+.hadith-hero .search-buttons .nav {
+  pointer-events: auto;
+  position: relative;
+  z-index: 11;
+}
+
+.hadith-hero .search-input-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hadith-hero .input {
+  color: #0f172a;
+}
+
+.hadith-hero .input::placeholder {
+  color: #64748b;
+}
+.hadees-header {
+  text-align: center;
+  margin: 0 0 14px;
+  padding: 14px 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hadees-title {
+  text-align: center;
+  margin: 0;
+}
+
+.hadith-hero-book-suggestions {
+  list-style: none;
+  margin: 10px auto 0;
+  padding: 0;
+  max-width: 740px;
+  width: 100%;
+  max-height: min(240px, 40vh);
+  overflow-y: auto;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 40px rgba(2, 6, 23, 0.2);
+  pointer-events: auto;
+  position: relative;
+  z-index: 12;
+}
+
+.hadith-hero-suggestion-empty {
+  padding: 14px 18px;
+  color: #64748b;
+  font-size: 15px;
+  text-align: center;
+}
+
+.hadith-hero-suggestion-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 18px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #0f172a;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.hadith-hero-suggestion-btn:hover,
+.hadith-hero-suggestion-btn:focus-visible {
+  background: rgba(59, 130, 246, 0.12);
+  outline: none;
+}
+
+.hadith-hero-hadith-suggestion-btn {
+  text-align: left;
+}
+
+.hadith-hero-suggestion-title {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.hadith-hero-suggestion-snippet {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.hadith-hero .search-content h1 {
+  color: #f8fafc;
+  text-shadow: 0 10px 32px rgba(2, 6, 23, 0.5);
+}
+
+.hadith-hero .search-buttons .nav {
+  box-shadow: 0 10px 28px rgba(2, 6, 23, 0.25);
+}
+
+/* Landing + sidebar open: main-content sat on top of hero and blocked clicks */
+.main-content.hadith-main-pass-through {
+  pointer-events: none;
+}
+
+.main-content.hadith-main-pass-through .hadith-sidebar {
+  pointer-events: auto;
+}
+
+.main-content.hadith-main-pass-through .hadees-detail-overlay {
+  pointer-events: none;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+/* Ek hi horizontal inset: header aur reading-mode dono ki left/right edges match (sidebar open/close dono) */
+.hadees-detail-overlay {
+  overflow-y: visible !important;
+  max-height: none !important;
+  width: min(1100px, calc(100vw - 40px));
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px 20px 24px;
+  margin: 0 auto;
+}
+
+/* Quran jaisa: fixed sidebar ke liye content right strip mein — taake header center dikhe */
+.hadees-detail-overlay.with-sidebar {
+  width: min(1100px, calc(100vw - 320px));
+  transform: translateX(140px);
+  transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.hadith-back-to-browse {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 2px solid #3b82f6;
+  background: #fff;
+  color: #3b82f6;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.hadith-back-to-browse:hover {
+    background: rgba(59, 130, 246, 0.08);
+  transform: translateY(-2px);
+}
+
+.hadith-sidebar-back-float {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+  z-index: 1002;
+  display: flex;
+  align-items: center;
+}
+
+.hadith-sidebar-back-float.with-sidebar {
+  left: 288px;
+}
+
+.hadith-reading-mode {
+  padding: 0;
+  animation: hadithViewFade 0.35s ease;
+  margin-left: 0;
+}
+
+.hadith-card {
+  margin-top: -20px;
+ 
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 14px;
+  padding: 20px 18px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hadith-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
+}
+
+.hadith-arabic-text,
+.hadith-english-text {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.8;
+  text-align: center;
+  animation: hadithContentIn 0.35s ease;
+}
+
+.hadith-arabic-text {
+  direction: rtl;
+  font-family: "Amiri", serif;
+  color: #f4f4f6;
+}
+
+.hadith-english-text {
+  direction: ltr;
+  margin-top: 14px;
+  font-family: "Georgia", "Times New Roman", serif;
+  color: #f7f8fa;
+}
+
+.hadith-meta {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f1f7ff;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  animation: hadithContentIn 0.35s ease;
+}
+
+@keyframes hadithViewFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hadithContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .search-container.hadith-hero.hadith-hero-with-sidebar .search-content {
+    width: min(100%, calc(100vw - 24px));
+    transform: none;
+  }
+
+  .hadees-detail-overlay.with-sidebar {
+    width: min(1100px, calc(100vw - 24px));
+    transform: none;
+  }
+
+  .hadith-sidebar-back-float {
+    top: 142px;
+    left: 12px;
+  }
+
+  .hadith-hero-photo {
+    background-position: center 20%;
+  }
+
+  .hadith-hero-birds {
+    height: 40%;
+  }
+
+  .hadith-bird--1 {
+    animation-duration: 48s;
+  }
+
+  .hadith-bird--2 {
+    animation-duration: 60s;
+  }
+
+  .hadith-bird--3 {
+    animation-duration: 72s;
+  }
+}
+
+/* --- Desktop aur Mobile dono par sidebar khulne par search content ko hide karne ke liye --- */
+.search-container.hadith-hero.hadith-hero-with-sidebar .search-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Desktop only */
+.hadith-sidebar-back-float {
+  display: flex;
+}
+
+/* Mobile hide */
+@media (max-width: 768px) {
+  .hadith-sidebar-back-float {
+    display: none !important;
+  }
+}
+

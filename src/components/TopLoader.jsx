@@ -1,6 +1,7 @@
 import React from "react";
 
-const TopLoader = ({ show = false }) => {
+const TopLoader = ({ show = false, loading }) => {
+  const active = loading !== undefined ? Boolean(loading) : Boolean(show);
   return (
     <div
       aria-hidden
@@ -8,7 +9,7 @@ const TopLoader = ({ show = false }) => {
         position: "fixed",
         top: 0,
         left: 0,
-        width: show ? "100%" : 0,
+        width: active ? "100%" : 0,
         height: 6,
         background:
           "linear-gradient(90deg, #00c6ff 0%, #0072ff 50%, #00c6ff 100%)",

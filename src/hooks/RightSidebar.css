@@ -22,7 +22,7 @@
   box-shadow: -2px 0 10px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
-  margin-top: 90px;
+  margin-top: 68px;
 }
 
 /* Close Btn */
@@ -159,4 +159,15 @@
 }
 .search-results strong {
   color: #60a5fa;
+}
+/* Existing CSS ke baad yeh add karein */
+
+@media (max-width: 768px) {
+  .right-sidebar {
+    width: 100%;       
+    max-width: 100%;   
+    margin-top: 0;    
+    height: 100vh;    
+    border-radius: 0;  
+  }
 }

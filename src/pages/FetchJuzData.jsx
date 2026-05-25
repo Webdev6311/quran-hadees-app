@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { JuzPageMap } from "./JuzPageMap";
 import { updateJuzDisplay } from "../utils/juzUtils";
 import axios from "axios";
+import DataLoader from "../components/DataLoader";
 import "./FetchJuzData.css";
 
 
@@ -278,27 +279,25 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
   // --------------------------
   useEffect(() => {
     const audio = audioRef.current;
-    if (!audio) return;
 
     if (!bottomPlayer) {
-      // stop playback if bottomPlayer cleared
-      audio.pause();
-      audio.removeAttribute("src");
+      if (audio) {
+        audio.pause();
+        audio.removeAttribute("src");
+      }
       return;
     }
+    if (!audio) return;
 
-    // set src & play (catch play errors for browsers requiring interaction)
     audio.src = bottomPlayer.url;
     audio.currentTime = 0;
     const p = audio.play();
-    if (p && p.catch)
+    if (p && p.catch) {
       p.catch((err) => {
-        // Autoplay blocked — just keep audio loaded and update state
         console.warn("Playback prevented by browser autoplay policy:", err);
       });
+    }
 
-
-    // Setup 'ended' handler which will compute and set the next ayah (if exists)
     const handleEnded = () => {
       const current = bottomPlayerRef.current;
       const jud = juz;
@@ -314,7 +313,6 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
 
       const surahData = jud.surahs.find((s) => Number(s.index) === surahNum);
       if (!surahData?.verse || !surahData.verse[`verse_${nextAyah}`]) {
-        // Surah finished
         setBottomPlayer(null);
         setPlaying({ surah: null, ayah: null, isPaused: false });
         return;
@@ -398,7 +396,7 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
   // Render / JSX
   // --------------------------
   if (loading) {
-    return <div className="loader"></div>;
+    return <DataLoader label="Loading Juz…" />;
   }
 
   if (!juz) return <p>No Juz found.</p>;
@@ -408,60 +406,62 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
       <div className="juz-container">
         {filteredSurahs.map((surah, i) => (
           <div key={i} className="juz-surah">
-          
+             <div className="surah-heading">
+      <h2 className="surah-title">
+        {surah.englishName || surah.name}
+      </h2>
 
-          
-            {/* Surah Info and Audio Play Buttons */}
-            <div className="surah-buttons">
-
-
-              <div className="surah-buttons">
-  <div className="surah-info-wrapper">
-
-    {/* 🔽 Hover Dropdown */}
-    <div className="surah-info-dropdown">
-
-      {/* Urdu Info Button */}
-   <button
-  className="dropdown-btn"
-  onClick={() => onOpenSurahInfo(Number(surah.index), "urdu")}
->
-  Urdu Info
-</button>
-
-<button
-  className="dropdown-btn"
-  onClick={() => onOpenSurahInfo(Number(surah.index), "english")}
->
-  English Info
-</button>
-
-
-    
+      {/* Bismillah (skip Surah 9) */}
+      {surah.index !== "009" && (
+        <p className="basmala">
+          بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+        </p>
+      )}
     </div>
-{/* ✅ Main Info Button (optional) */}
-    <button className="btn btn-info">
+          
+
+          
+           {/* Surah Info and Audio Play Buttons */}
+<div className="surah-buttons">
+  
+  <div className="surah-info-wrapper">
+     <div className="surah-info-dropdown">
+      <button
+        className="dropdown-btn"
+        onClick={() => onOpenSurahInfo(Number(surah.index), "urdu")}
+      >
+        Urdu Info
+      </button>
+
+      <button
+        className="dropdown-btn"
+        onClick={() => onOpenSurahInfo(Number(surah.index), "english")}
+      >
+        English Info
+      </button>
+    </div>
+    {/* Main Info Button */}
+    <button className="btn btn-info action-btn">
       ℹ Surah Info
     </button>
 
+    {/* Hover Dropdown */}
+   
   </div>
+
+  {/* Play Audio Button */}
+  <button
+    className="play-surah-btn action-btn"
+    onClick={() => playSurahAudio(surah.index)}
+  >
+    {playing.surah === Number(surah.index)
+      ? playing.isPaused
+        ? "⏸ Paused"
+        : "Play Audio"
+      : "▶ Play Audio"}
+  </button>
+
 </div>
-       
-
-
-
-
-              <button
-                className="play-surah-btn"
-                onClick={() => playSurahAudio(surah.index)}
-              >
-                {playing.surah === Number(surah.index)
-                  ? playing.isPaused
-                    ? "⏸ Paused"
-                    : " Play Audio"
-                  : "▶ Play Audio"}
-              </button>
-            </div>
 
             {/* Verses List */}
             <div className="verses-list">
@@ -538,16 +538,14 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
 
       </div>
 
-      {/* Fixed Bottom Audio Player */}
+      {/* Fixed Bottom Audio Player – only shown when Play clicked */}
       {bottomPlayer && (
         <audio
           ref={audioRef}
-          className="audio-player-fixed"
+          className="juz-audio-player-fixed"
           controls
-          // src is set imperatively in effect for reliability
         />
       )}
-
    
     </>
 

@@ -1,0 +1,88 @@
+/* Hadith: Masjid + birds behind reading UI — keep separate from Hadith.css */
+
+/* Allow normal document scroll (footer stays after content, like Home / Quran / Contact) */
+html.hadith-root-scroll,
+html.hadith-root-scroll body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.hadith-bd-page {
+  position: relative;
+  min-height: calc(100vh - 90px);
+  margin: -23px;
+}
+
+.hadith-bd-page.surah-open {
+  padding-bottom: min(14vh, 140px);
+}
+
+/* Scrolls with page so footer is not covered by a viewport-fixed layer */
+.hadith-bd-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Position layers inside fixed backdrop (uses same class names as Hadith.css for photo/gradient/birds) */
+.hadith-bd-backdrop .hadith-hero-gradient,
+.hadith-bd-backdrop .hadith-hero-photo,
+.hadith-bd-backdrop .hadith-hero-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.hadith-bd-backdrop .hadith-hero-birds {
+  position: absolute;
+}
+
+/* Landing hero: in document flow so main has real height and footer sits below the fold */
+.search-container.hadith-hero.hadith-bd-hero-shell {
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: auto !important;
+  z-index: 5;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: calc(100vh - 90px) !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 24px 20px;
+  overflow: visible !important;
+  border-radius: 0;
+  pointer-events: none;
+}
+
+.search-container.hadith-hero.hadith-bd-hero-shell .search-content,
+.search-container.hadith-hero.hadith-bd-hero-shell .search-input-container,
+.search-container.hadith-hero.hadith-bd-hero-shell .search-buttons,
+.search-container.hadith-hero.hadith-bd-hero-shell .hadith-hero-book-suggestions {
+  pointer-events: auto;
+}
+
+.hadith-bd-page .main-content {
+  position: relative;
+  z-index: 2;
+  background: transparent !important;
+}
+
+/* Book / chapter / hadith selected: frosted panel over blurred Masjid */
+.surah-detail-overlay.hadith-bd-reading-glass {
+  background: rgba(252, 252, 253, 0.52) !important;
+  backdrop-filter: blur(20px) saturate(1.12);
+  -webkit-backdrop-filter: blur(20px) saturate(1.12);
+  border: 1px solid rgba(255, 255, 255, 0.48) !important;
+  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.12) !important;
+  border-radius: 16px;
+}
