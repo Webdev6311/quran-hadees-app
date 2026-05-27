@@ -1,0 +1,2368 @@
+[
+  {
+    "title": "Idris (Enoch)",
+    "titleAr": "إدريس",
+    "keywords": [
+      "idris",
+      "enoch",
+      "إدريس"
+    ],
+    "refs": [
+      {
+        "s": 19,
+        "a": 56
+      },
+      {
+        "s": 19,
+        "a": 57
+      },
+      {
+        "s": 21,
+        "a": 85
+      }
+    ]
+  },
+  {
+    "title": "Hud",
+    "titleAr": "هود",
+    "keywords": [
+      "hud",
+      "prophet hud",
+      "هود"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 65
+      },
+      {
+        "s": 11,
+        "a": 50
+      },
+      {
+        "s": 11,
+        "a": 58
+      },
+      {
+        "s": 26,
+        "a": 123
+      },
+      {
+        "s": 46,
+        "a": 21
+      }
+    ]
+  },
+  {
+    "title": "Salih",
+    "titleAr": "صالح",
+    "keywords": [
+      "salih",
+      "saleh",
+      "صالح",
+      "she camel"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 73
+      },
+      {
+        "s": 11,
+        "a": 61
+      },
+      {
+        "s": 11,
+        "a": 64
+      },
+      {
+        "s": 26,
+        "a": 141
+      },
+      {
+        "s": 27,
+        "a": 45
+      },
+      {
+        "s": 54,
+        "a": 23
+      }
+    ]
+  },
+  {
+    "title": "Shuayb",
+    "titleAr": "شعيب",
+    "keywords": [
+      "shuayb",
+      "shoaib",
+      "شعيب"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 85
+      },
+      {
+        "s": 11,
+        "a": 84
+      },
+      {
+        "s": 11,
+        "a": 94
+      },
+      {
+        "s": 29,
+        "a": 36
+      }
+    ]
+  },
+  {
+    "title": "Thamud",
+    "titleAr": "ثمود",
+    "keywords": [
+      "thamud",
+      "samood",
+      "ثمود"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 73
+      },
+      {
+        "s": 11,
+        "a": 61
+      },
+      {
+        "s": 17,
+        "a": 59
+      },
+      {
+        "s": 26,
+        "a": 141
+      },
+      {
+        "s": 54,
+        "a": 23
+      },
+      {
+        "s": 91,
+        "a": 11
+      },
+      {
+        "s": 91,
+        "a": 14
+      }
+    ]
+  },
+  {
+    "title": "Midian (Madyan)",
+    "titleAr": "مدين",
+    "keywords": [
+      "madyan",
+      "midian",
+      "مدين"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 85
+      },
+      {
+        "s": 11,
+        "a": 84
+      },
+      {
+        "s": 28,
+        "a": 22
+      },
+      {
+        "s": 28,
+        "a": 23
+      }
+    ]
+  },
+  {
+    "title": "Luqman",
+    "titleAr": "لقمان",
+    "keywords": [
+      "luqman",
+      "lukman",
+      "لقمان"
+    ],
+    "refs": [
+      {
+        "s": 31,
+        "a": 12
+      },
+      {
+        "s": 31,
+        "a": 13
+      },
+      {
+        "s": 31,
+        "a": 14
+      },
+      {
+        "s": 31,
+        "a": 19
+      }
+    ]
+  },
+  {
+    "title": "Dhul-Qarnayn",
+    "titleAr": "ذو القرنين",
+    "keywords": [
+      "dhul qarnayn",
+      "zulqarnain",
+      "zulqarnayn",
+      "ذو القرنين"
+    ],
+    "refs": [
+      {
+        "s": 18,
+        "a": 83
+      },
+      {
+        "s": 18,
+        "a": 86
+      },
+      {
+        "s": 18,
+        "a": 94
+      },
+      {
+        "s": 18,
+        "a": 98
+      }
+    ]
+  },
+  {
+    "title": "Samiri (golden calf)",
+    "titleAr": "السامري",
+    "keywords": [
+      "samiri",
+      "samari",
+      "السامري"
+    ],
+    "refs": [
+      {
+        "s": 20,
+        "a": 85
+      },
+      {
+        "s": 20,
+        "a": 87
+      },
+      {
+        "s": 20,
+        "a": 95
+      },
+      {
+        "s": 20,
+        "a": 97
+      }
+    ]
+  },
+  {
+    "title": "Qarun (Korah)",
+    "titleAr": "قارون",
+    "keywords": [
+      "qarun",
+      "korah",
+      "قارون"
+    ],
+    "refs": [
+      {
+        "s": 28,
+        "a": 76
+      },
+      {
+        "s": 28,
+        "a": 78
+      },
+      {
+        "s": 28,
+        "a": 79
+      },
+      {
+        "s": 29,
+        "a": 39
+      }
+    ]
+  },
+  {
+    "title": "Believers",
+    "titleAr": "مؤمنون",
+    "keywords": [
+      "believers",
+      "mu'min",
+      "مؤمن"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 62
+      },
+      {
+        "s": 8,
+        "a": 2
+      },
+      {
+        "s": 8,
+        "a": 4
+      },
+      {
+        "s": 23,
+        "a": 1
+      },
+      {
+        "s": 49,
+        "a": 15
+      }
+    ]
+  },
+  {
+    "title": "Disbelievers",
+    "titleAr": "كافرون",
+    "keywords": [
+      "disbelievers",
+      "kafir",
+      "kuffar",
+      "كافر"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 6
+      },
+      {
+        "s": 2,
+        "a": 89
+      },
+      {
+        "s": 8,
+        "a": 36
+      },
+      {
+        "s": 47,
+        "a": 34
+      }
+    ]
+  },
+  {
+    "title": "Repentance (Tawbah)",
+    "titleAr": "توبة",
+    "keywords": [
+      "repentance",
+      "tawbah",
+      "توبة"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 222
+      },
+      {
+        "s": 9,
+        "a": 104
+      },
+      {
+        "s": 9,
+        "a": 118
+      },
+      {
+        "s": 66,
+        "a": 8
+      }
+    ]
+  },
+  {
+    "title": "Mercy of Allah",
+    "titleAr": "رحمة",
+    "keywords": [
+      "mercy",
+      "rahma",
+      "رحمة"
+    ],
+    "refs": [
+      {
+        "s": 1,
+        "a": 1
+      },
+      {
+        "s": 1,
+        "a": 2
+      },
+      {
+        "s": 1,
+        "a": 3
+      },
+      {
+        "s": 2,
+        "a": 143
+      },
+      {
+        "s": 6,
+        "a": 12
+      },
+      {
+        "s": 7,
+        "a": 156
+      },
+      {
+        "s": 39,
+        "a": 53
+      }
+    ]
+  },
+  {
+    "title": "Justice",
+    "titleAr": "عدل",
+    "keywords": [
+      "justice",
+      "adl",
+      "عدل"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 58
+      },
+      {
+        "s": 4,
+        "a": 135
+      },
+      {
+        "s": 5,
+        "a": 8
+      },
+      {
+        "s": 16,
+        "a": 90
+      },
+      {
+        "s": 55,
+        "a": 7
+      }
+    ]
+  },
+  {
+    "title": "Truth",
+    "titleAr": "حق",
+    "keywords": [
+      "truth",
+      "haqq",
+      "حق"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 42
+      },
+      {
+        "s": 2,
+        "a": 147
+      },
+      {
+        "s": 10,
+        "a": 32
+      },
+      {
+        "s": 17,
+        "a": 81
+      },
+      {
+        "s": 22,
+        "a": 62
+      }
+    ]
+  },
+  {
+    "title": "Falsehood",
+    "titleAr": "باطل",
+    "keywords": [
+      "falsehood",
+      "batil",
+      "باطل"
+    ],
+    "refs": [
+      {
+        "s": 8,
+        "a": 8
+      },
+      {
+        "s": 10,
+        "a": 32
+      },
+      {
+        "s": 13,
+        "a": 17
+      },
+      {
+        "s": 17,
+        "a": 81
+      },
+      {
+        "s": 34,
+        "a": 49
+      }
+    ]
+  },
+  {
+    "title": "Book (Scripture)",
+    "titleAr": "كتاب",
+    "keywords": [
+      "book",
+      "scripture",
+      "kitab",
+      "کتاب"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 2
+      },
+      {
+        "s": 2,
+        "a": 176
+      },
+      {
+        "s": 3,
+        "a": 3
+      },
+      {
+        "s": 6,
+        "a": 38
+      },
+      {
+        "s": 57,
+        "a": 25
+      }
+    ]
+  },
+  {
+    "title": "Prophets (general)",
+    "titleAr": "أنبياء",
+    "keywords": [
+      "prophets",
+      "nabi",
+      "anbiya",
+      "نبی",
+      "نبي"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 213
+      },
+      {
+        "s": 3,
+        "a": 84
+      },
+      {
+        "s": 4,
+        "a": 163
+      },
+      {
+        "s": 6,
+        "a": 84
+      },
+      {
+        "s": 21,
+        "a": 25
+      }
+    ]
+  },
+  {
+    "title": "Muhammad",
+    "titleAr": "محمد",
+    "keywords": [
+      "muhammad",
+      "mohammad",
+      "rasool",
+      "رسول",
+      "محمد"
+    ],
+    "refs": [
+      {
+        "s": 3,
+        "a": 144
+      },
+      {
+        "s": 33,
+        "a": 40
+      },
+      {
+        "s": 33,
+        "a": 45
+      },
+      {
+        "s": 47,
+        "a": 2
+      },
+      {
+        "s": 48,
+        "a": 29
+      },
+      {
+        "s": 61,
+        "a": 6
+      }
+    ]
+  },
+  {
+    "title": "Night Journey and Ascension",
+    "titleAr": "إسراء ومعراج",
+    "keywords": [
+      "isra miraj",
+      "ascension",
+      "معراج",
+      "إسراء"
+    ],
+    "refs": [
+      {
+        "s": 17,
+        "a": 1
+      },
+      {
+        "s": 53,
+        "a": 1
+      },
+      {
+        "s": 53,
+        "a": 5
+      },
+      {
+        "s": 53,
+        "a": 13
+      }
+    ]
+  },
+  {
+    "title": "Scroll of Abraham",
+    "titleAr": "صحف إبراهيم",
+    "keywords": [
+      "abraham scrolls",
+      "ibrahim suhuf"
+    ],
+    "refs": [
+      {
+        "s": 87,
+        "a": 18
+      },
+      {
+        "s": 87,
+        "a": 19
+      }
+    ]
+  },
+  {
+    "title": "She-camel of Salih",
+    "titleAr": "ناقة",
+    "keywords": [
+      "she camel",
+      "naqa",
+      "camel of salih",
+      "ناقة"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 73
+      },
+      {
+        "s": 11,
+        "a": 64
+      },
+      {
+        "s": 17,
+        "a": 59
+      },
+      {
+        "s": 26,
+        "a": 155
+      },
+      {
+        "s": 54,
+        "a": 27
+      },
+      {
+        "s": 91,
+        "a": 13
+      }
+    ]
+  },
+  {
+    "title": "Tower of Babel (arrogance)",
+    "titleAr": "بابل",
+    "keywords": [
+      "tower babel",
+      "arrogance build",
+      "بابل"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 102
+      },
+      {
+        "s": 28,
+        "a": 38
+      },
+      {
+        "s": 40,
+        "a": 36
+      }
+    ]
+  },
+  {
+    "title": "Sabbath",
+    "titleAr": "سبت",
+    "keywords": [
+      "sabbath",
+      "sabt",
+      "سبت"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 65
+      },
+      {
+        "s": 4,
+        "a": 47
+      },
+      {
+        "s": 4,
+        "a": 154
+      },
+      {
+        "s": 7,
+        "a": 163
+      },
+      {
+        "s": 16,
+        "a": 124
+      }
+    ]
+  },
+  {
+    "title": "Table spread (Ma'idah)",
+    "titleAr": "مائدة",
+    "keywords": [
+      "table spread",
+      "ma'idah",
+      "مائدة"
+    ],
+    "refs": [
+      {
+        "s": 5,
+        "a": 112
+      },
+      {
+        "s": 5,
+        "a": 114
+      },
+      {
+        "s": 5,
+        "a": 115
+      }
+    ]
+  },
+  {
+    "title": "Disciples (Hawariyun)",
+    "titleAr": "حواريون",
+    "keywords": [
+      "disciples",
+      "hawariyun",
+      "حواري"
+    ],
+    "refs": [
+      {
+        "s": 3,
+        "a": 52
+      },
+      {
+        "s": 5,
+        "a": 111
+      },
+      {
+        "s": 5,
+        "a": 112
+      },
+      {
+        "s": 61,
+        "a": 14
+      }
+    ]
+  },
+  {
+    "title": "Crucifixion (claim)",
+    "titleAr": "صلب",
+    "keywords": [
+      "crucifixion",
+      "cross",
+      "salaba",
+      "صلب"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 157
+      },
+      {
+        "s": 4,
+        "a": 158
+      }
+    ]
+  },
+  {
+    "title": "Resurrection",
+    "titleAr": "بعث",
+    "keywords": [
+      "resurrection",
+      "hashr",
+      "ba'th",
+      "بعث"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 56
+      },
+      {
+        "s": 22,
+        "a": 7
+      },
+      {
+        "s": 36,
+        "a": 51
+      },
+      {
+        "s": 39,
+        "a": 68
+      },
+      {
+        "s": 75,
+        "a": 1
+      }
+    ]
+  },
+  {
+    "title": "Judgment Day",
+    "titleAr": "يوم الدين",
+    "keywords": [
+      "judgment day",
+      "qiyamah",
+      "day of judgment",
+      "قیامت"
+    ],
+    "refs": [
+      {
+        "s": 1,
+        "a": 4
+      },
+      {
+        "s": 2,
+        "a": 48
+      },
+      {
+        "s": 22,
+        "a": 1
+      },
+      {
+        "s": 39,
+        "a": 68
+      },
+      {
+        "s": 69,
+        "a": 15
+      }
+    ]
+  },
+  {
+    "title": "Scale (Mizan)",
+    "titleAr": "ميزان",
+    "keywords": [
+      "scale",
+      "mizan",
+      "balance",
+      "میزان"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 8
+      },
+      {
+        "s": 21,
+        "a": 47
+      },
+      {
+        "s": 23,
+        "a": 102
+      },
+      {
+        "s": 55,
+        "a": 7
+      },
+      {
+        "s": 101,
+        "a": 6
+      },
+      {
+        "s": 101,
+        "a": 7
+      }
+    ]
+  },
+  {
+    "title": "Bridge (Sirat)",
+    "titleAr": "صراط",
+    "keywords": [
+      "sirat",
+      "path",
+      "صراط"
+    ],
+    "refs": [
+      {
+        "s": 1,
+        "a": 6
+      },
+      {
+        "s": 15,
+        "a": 41
+      },
+      {
+        "s": 19,
+        "a": 71
+      },
+      {
+        "s": 37,
+        "a": 23
+      },
+      {
+        "s": 37,
+        "a": 24
+      }
+    ]
+  },
+  {
+    "title": "Intercession",
+    "titleAr": "شفاعة",
+    "keywords": [
+      "intercession",
+      "shafa'ah",
+      "شفاعة"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 48
+      },
+      {
+        "s": 2,
+        "a": 123
+      },
+      {
+        "s": 10,
+        "a": 3
+      },
+      {
+        "s": 20,
+        "a": 109
+      },
+      {
+        "s": 21,
+        "a": 28
+      }
+    ]
+  },
+  {
+    "title": "Paradise rivers",
+    "titleAr": "أنهار",
+    "keywords": [
+      "rivers paradise",
+      "anhar",
+      "أنهار"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 25
+      },
+      {
+        "s": 3,
+        "a": 15
+      },
+      {
+        "s": 47,
+        "a": 15
+      },
+      {
+        "s": 76,
+        "a": 5
+      },
+      {
+        "s": 76,
+        "a": 6
+      }
+    ]
+  },
+  {
+    "title": "Throne (Kursi)",
+    "titleAr": "كرسي",
+    "keywords": [
+      "kursi",
+      "chair",
+      "footstool",
+      "کرسي"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 255
+      }
+    ]
+  },
+  {
+    "title": "Bequest (Wasiyyah)",
+    "titleAr": "وصية",
+    "keywords": [
+      "will",
+      "bequest",
+      "wasiyyah",
+      "وصية"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 180
+      },
+      {
+        "s": 2,
+        "a": 181
+      },
+      {
+        "s": 2,
+        "a": 182
+      },
+      {
+        "s": 5,
+        "a": 106
+      }
+    ]
+  },
+  {
+    "title": "Inheritance",
+    "titleAr": "ميراث",
+    "keywords": [
+      "inheritance",
+      "mirath",
+      "ميراث"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 7
+      },
+      {
+        "s": 4,
+        "a": 11
+      },
+      {
+        "s": 4,
+        "a": 12
+      },
+      {
+        "s": 4,
+        "a": 13
+      }
+    ]
+  },
+  {
+    "title": "Witnesses",
+    "titleAr": "شهداء",
+    "keywords": [
+      "witnesses",
+      "shuhada",
+      "شهود"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 282
+      },
+      {
+        "s": 4,
+        "a": 41
+      },
+      {
+        "s": 5,
+        "a": 106
+      },
+      {
+        "s": 24,
+        "a": 4
+      }
+    ]
+  },
+  {
+    "title": "Oppression (Zulm)",
+    "titleAr": "ظلم",
+    "keywords": [
+      "oppression",
+      "zulm",
+      "wrong",
+      "ظلم"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 59
+      },
+      {
+        "s": 2,
+        "a": 193
+      },
+      {
+        "s": 3,
+        "a": 112
+      },
+      {
+        "s": 10,
+        "a": 33
+      },
+      {
+        "s": 26,
+        "a": 227
+      }
+    ]
+  },
+  {
+    "title": "Gratitude (Shukr)",
+    "titleAr": "شكر",
+    "keywords": [
+      "gratitude",
+      "thanks",
+      "shukr",
+      "شکر"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 152
+      },
+      {
+        "s": 14,
+        "a": 7
+      },
+      {
+        "s": 16,
+        "a": 114
+      },
+      {
+        "s": 27,
+        "a": 19
+      },
+      {
+        "s": 31,
+        "a": 12
+      }
+    ]
+  },
+  {
+    "title": "Ingratitude (Kufran)",
+    "titleAr": "كفران",
+    "keywords": [
+      "ingratitude",
+      "kufran",
+      "نعمة"
+    ],
+    "refs": [
+      {
+        "s": 76,
+        "a": 3
+      },
+      {
+        "s": 14,
+        "a": 7
+      },
+      {
+        "s": 16,
+        "a": 112
+      }
+    ]
+  },
+  {
+    "title": "Humility",
+    "titleAr": "تواضع",
+    "keywords": [
+      "humility",
+      "humble",
+      "تواضع"
+    ],
+    "refs": [
+      {
+        "s": 25,
+        "a": 63
+      },
+      {
+        "s": 17,
+        "a": 37
+      },
+      {
+        "s": 25,
+        "a": 73
+      }
+    ]
+  },
+  {
+    "title": "Arrogance (Kibr)",
+    "titleAr": "كبر",
+    "keywords": [
+      "arrogance",
+      "pride",
+      "kibr",
+      "تكبر"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 13
+      },
+      {
+        "s": 7,
+        "a": 146
+      },
+      {
+        "s": 16,
+        "a": 23
+      },
+      {
+        "s": 40,
+        "a": 35
+      },
+      {
+        "s": 40,
+        "a": 56
+      }
+    ]
+  },
+  {
+    "title": "Slander",
+    "titleAr": "بهتان",
+    "keywords": [
+      "slander",
+      "buhtan",
+      "false accusation",
+      "بهتان"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 20
+      },
+      {
+        "s": 24,
+        "a": 23
+      },
+      {
+        "s": 33,
+        "a": 58
+      },
+      {
+        "s": 68,
+        "a": 11
+      }
+    ]
+  },
+  {
+    "title": "Backbiting",
+    "titleAr": "غيبة",
+    "keywords": [
+      "backbiting",
+      "ghibah",
+      "غیبت"
+    ],
+    "refs": [
+      {
+        "s": 49,
+        "a": 12
+      }
+    ]
+  },
+  {
+    "title": "Gossip",
+    "titleAr": "نميمة",
+    "keywords": [
+      "gossip",
+      "spy",
+      "tajassus"
+    ],
+    "refs": [
+      {
+        "s": 49,
+        "a": 12
+      },
+      {
+        "s": 24,
+        "a": 27
+      }
+    ]
+  },
+  {
+    "title": "Orphans rights",
+    "titleAr": "يتيم",
+    "keywords": [
+      "orphan rights",
+      "yateem"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 220
+      },
+      {
+        "s": 4,
+        "a": 10
+      },
+      {
+        "s": 93,
+        "a": 9
+      }
+    ]
+  },
+  {
+    "title": "Parents",
+    "titleAr": "والدان",
+    "keywords": [
+      "parents",
+      "mother father",
+      "والدین",
+      "والدين"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 83
+      },
+      {
+        "s": 17,
+        "a": 23
+      },
+      {
+        "s": 31,
+        "a": 14
+      },
+      {
+        "s": 46,
+        "a": 15
+      }
+    ]
+  },
+  {
+    "title": "Neighbors",
+    "titleAr": "جار",
+    "keywords": [
+      "neighbor",
+      "jār",
+      "جار"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 36
+      }
+    ]
+  },
+  {
+    "title": "Travelers",
+    "titleAr": "مسافر",
+    "keywords": [
+      "traveler",
+      "wayfarer",
+      "ibn sabil",
+      "مسافر"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 215
+      },
+      {
+        "s": 4,
+        "a": 36
+      }
+    ]
+  },
+  {
+    "title": "Slavery and freeing",
+    "titleAr": "رق",
+    "keywords": [
+      "slave",
+      "freeing",
+      "milk yamin",
+      "رق"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 92
+      },
+      {
+        "s": 24,
+        "a": 33
+      },
+      {
+        "s": 2,
+        "a": 177
+      }
+    ]
+  },
+  {
+    "title": "Oaths and expiation",
+    "titleAr": "كفارة",
+    "keywords": [
+      "oath expiation",
+      "kaffarah",
+      "كفارة"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 225
+      },
+      {
+        "s": 5,
+        "a": 89
+      },
+      {
+        "s": 66,
+        "a": 2
+      }
+    ]
+  },
+  {
+    "title": "Menstruation",
+    "titleAr": "حيض",
+    "keywords": [
+      "menstruation",
+      "hayd",
+      "حيض"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 222
+      }
+    ]
+  },
+  {
+    "title": "Breastfeeding",
+    "titleAr": "رضاعة",
+    "keywords": [
+      "breastfeeding",
+      "rada'",
+      "رضاع"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 233
+      },
+      {
+        "s": 65,
+        "a": 6
+      }
+    ]
+  },
+  {
+    "title": "Polygamy",
+    "titleAr": "نكاح",
+    "keywords": [
+      "polygamy",
+      "four wives",
+      "مثنى"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 3
+      }
+    ]
+  },
+  {
+    "title": "Divorced women",
+    "titleAr": "مطلقة",
+    "keywords": [
+      "divorced women",
+      "mutallaqah"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 228
+      },
+      {
+        "s": 2,
+        "a": 229
+      },
+      {
+        "s": 65,
+        "a": 1
+      }
+    ]
+  },
+  {
+    "title": "Widows",
+    "titleAr": "أرملة",
+    "keywords": [
+      "widow",
+      "yateem widow"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 234
+      },
+      {
+        "s": 2,
+        "a": 240
+      }
+    ]
+  },
+  {
+    "title": "Mahram",
+    "titleAr": "محارم",
+    "keywords": [
+      "mahram",
+      "حریم"
+    ],
+    "refs": [
+      {
+        "s": 24,
+        "a": 31
+      }
+    ]
+  },
+  {
+    "title": "Modesty",
+    "titleAr": "حياء",
+    "keywords": [
+      "modesty",
+      "haya",
+      "حياء"
+    ],
+    "refs": [
+      {
+        "s": 24,
+        "a": 30
+      },
+      {
+        "s": 24,
+        "a": 31
+      }
+    ]
+  },
+  {
+    "title": "Lowering gaze",
+    "titleAr": "غض البصر",
+    "keywords": [
+      "lower gaze",
+      "ghad basar"
+    ],
+    "refs": [
+      {
+        "s": 24,
+        "a": 30
+      },
+      {
+        "s": 24,
+        "a": 31
+      }
+    ]
+  },
+  {
+    "title": "Adultery accusation",
+    "titleAr": "قذف",
+    "keywords": [
+      "qazf",
+      "false accusation chastity",
+      "قذف"
+    ],
+    "refs": [
+      {
+        "s": 24,
+        "a": 4
+      },
+      {
+        "s": 24,
+        "a": 5
+      },
+      {
+        "s": 24,
+        "a": 6
+      }
+    ]
+  },
+  {
+    "title": "Apostasy (return)",
+    "titleAr": "ردة",
+    "keywords": [
+      "apostasy",
+      "murtadd",
+      "ردة"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 137
+      },
+      {
+        "s": 16,
+        "a": 106
+      }
+    ]
+  },
+  {
+    "title": "Jihad (striving)",
+    "titleAr": "جهاد",
+    "keywords": [
+      "jihad",
+      "strive",
+      "jahada",
+      "جهاد"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 218
+      },
+      {
+        "s": 8,
+        "a": 72
+      },
+      {
+        "s": 9,
+        "a": 16
+      },
+      {
+        "s": 9,
+        "a": 19
+      },
+      {
+        "s": 22,
+        "a": 78
+      },
+      {
+        "s": 47,
+        "a": 31
+      }
+    ]
+  },
+  {
+    "title": "Peace (Salam)",
+    "titleAr": "سلام",
+    "keywords": [
+      "peace",
+      "salam",
+      "سلام"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 208
+      },
+      {
+        "s": 4,
+        "a": 90
+      },
+      {
+        "s": 6,
+        "a": 54
+      },
+      {
+        "s": 36,
+        "a": 58
+      }
+    ]
+  },
+  {
+    "title": "Greeting",
+    "titleAr": "تحية",
+    "keywords": [
+      "greeting",
+      "tahiyyah",
+      "سلام عليكم"
+    ],
+    "refs": [
+      {
+        "s": 4,
+        "a": 86
+      },
+      {
+        "s": 24,
+        "a": 61
+      },
+      {
+        "s": 24,
+        "a": 27
+      }
+    ]
+  },
+  {
+    "title": "Mosque",
+    "titleAr": "مسجد",
+    "keywords": [
+      "mosque",
+      "masjid",
+      "مسجد"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 114
+      },
+      {
+        "s": 9,
+        "a": 17
+      },
+      {
+        "s": 9,
+        "a": 18
+      },
+      {
+        "s": 22,
+        "a": 40
+      }
+    ]
+  },
+  {
+    "title": "Sacred months",
+    "titleAr": "أشهر حرم",
+    "keywords": [
+      "sacred months",
+      "ashhur hurum"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 217
+      },
+      {
+        "s": 9,
+        "a": 2
+      },
+      {
+        "s": 9,
+        "a": 5
+      }
+    ]
+  },
+  {
+    "title": "Sacred House",
+    "titleAr": "البيت الحرام",
+    "keywords": [
+      "sacred house",
+      "baytullah",
+      "کعبہ"
+    ],
+    "refs": [
+      {
+        "s": 5,
+        "a": 2
+      },
+      {
+        "s": 5,
+        "a": 97
+      },
+      {
+        "s": 22,
+        "a": 26
+      }
+    ]
+  },
+  {
+    "title": "Safa and Marwa",
+    "titleAr": "صفا ومروة",
+    "keywords": [
+      "safa marwa",
+      "صفا",
+      "مروة"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 158
+      }
+    ]
+  },
+  {
+    "title": "Hunting in ihram",
+    "titleAr": "صيد",
+    "keywords": [
+      "hunting ihram",
+      "sayd"
+    ],
+    "refs": [
+      {
+        "s": 5,
+        "a": 1
+      },
+      {
+        "s": 5,
+        "a": 2
+      },
+      {
+        "s": 5,
+        "a": 94
+      }
+    ]
+  },
+  {
+    "title": "Sacrifice (Udhiyah)",
+    "titleAr": "أضحية",
+    "keywords": [
+      "sacrifice",
+      "udhiyah",
+      "qurbani",
+      "أضحية"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 196
+      },
+      {
+        "s": 22,
+        "a": 28
+      },
+      {
+        "s": 22,
+        "a": 36
+      },
+      {
+        "s": 108,
+        "a": 2
+      }
+    ]
+  },
+  {
+    "title": "Prohibited meat",
+    "titleAr": "ميتة",
+    "keywords": [
+      "dead meat",
+      "maytah",
+      "ميتة"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 173
+      },
+      {
+        "s": 5,
+        "a": 3
+      },
+      {
+        "s": 6,
+        "a": 145
+      }
+    ]
+  },
+  {
+    "title": "Blood",
+    "titleAr": "دم",
+    "keywords": [
+      "blood",
+      "dam",
+      "دم"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 173
+      },
+      {
+        "s": 6,
+        "a": 145
+      },
+      {
+        "s": 16,
+        "a": 66
+      }
+    ]
+  },
+  {
+    "title": "Honey",
+    "titleAr": "عسل",
+    "keywords": [
+      "honey",
+      "asal",
+      "عسل"
+    ],
+    "refs": [
+      {
+        "s": 16,
+        "a": 68
+      },
+      {
+        "s": 16,
+        "a": 69
+      },
+      {
+        "s": 47,
+        "a": 15
+      }
+    ]
+  },
+  {
+    "title": "Salt water and fresh",
+    "titleAr": "ملح وعذب",
+    "keywords": [
+      "salt water",
+      "two seas",
+      "ملح"
+    ],
+    "refs": [
+      {
+        "s": 25,
+        "a": 53
+      },
+      {
+        "s": 35,
+        "a": 12
+      },
+      {
+        "s": 55,
+        "a": 19
+      }
+    ]
+  },
+  {
+    "title": "Ship (ark)",
+    "titleAr": "فلك",
+    "keywords": [
+      "ship",
+      "ark",
+      "fulk",
+      "سفينة"
+    ],
+    "refs": [
+      {
+        "s": 10,
+        "a": 22
+      },
+      {
+        "s": 11,
+        "a": 37
+      },
+      {
+        "s": 23,
+        "a": 22
+      },
+      {
+        "s": 29,
+        "a": 15
+      },
+      {
+        "s": 36,
+        "a": 41
+      },
+      {
+        "s": 54,
+        "a": 13
+      }
+    ]
+  },
+  {
+    "title": "Iron",
+    "titleAr": "حديد",
+    "keywords": [
+      "iron",
+      "hadid",
+      "حديد"
+    ],
+    "refs": [
+      {
+        "s": 18,
+        "a": 96
+      },
+      {
+        "s": 34,
+        "a": 10
+      },
+      {
+        "s": 57,
+        "a": 25
+      }
+    ]
+  },
+  {
+    "title": "Brass or copper workers",
+    "titleAr": "نحاس",
+    "keywords": [
+      "metal workers",
+      "sabagh"
+    ],
+    "refs": [
+      {
+        "s": 34,
+        "a": 10
+      },
+      {
+        "s": 34,
+        "a": 11
+      }
+    ]
+  },
+  {
+    "title": "Sabbath-breakers",
+    "titleAr": "سبت",
+    "keywords": [
+      "sabbath breakers",
+      "fish Saturday"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 163
+      },
+      {
+        "s": 7,
+        "a": 164
+      }
+    ]
+  },
+  {
+    "title": "Transformation (apes)",
+    "titleAr": "قردة",
+    "keywords": [
+      "apes transformation",
+      "قردة"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 65
+      },
+      {
+        "s": 5,
+        "a": 60
+      },
+      {
+        "s": 7,
+        "a": 166
+      }
+    ]
+  },
+  {
+    "title": "Punishment and warning",
+    "titleAr": "عذاب",
+    "keywords": [
+      "punishment grave",
+      "barzakh",
+      "عذاب"
+    ],
+    "refs": [
+      {
+        "s": 6,
+        "a": 93
+      },
+      {
+        "s": 8,
+        "a": 50
+      },
+      {
+        "s": 23,
+        "a": 99
+      },
+      {
+        "s": 40,
+        "a": 45
+      }
+    ]
+  },
+  {
+    "title": "Recording angels",
+    "titleAr": "كراما كاتبين",
+    "keywords": [
+      "recording angels",
+      "kiraman katibin"
+    ],
+    "refs": [
+      {
+        "s": 50,
+        "a": 17
+      },
+      {
+        "s": 50,
+        "a": 18
+      }
+    ]
+  },
+  {
+    "title": "Barrier (Dhul-Qarnayn dam)",
+    "titleAr": "سد",
+    "keywords": [
+      "dam wall yajuj",
+      "سد ذي القرنين"
+    ],
+    "refs": [
+      {
+        "s": 18,
+        "a": 95
+      },
+      {
+        "s": 18,
+        "a": 96
+      }
+    ]
+  },
+  {
+    "title": "Tyrants",
+    "titleAr": "جبار",
+    "keywords": [
+      "tyrant",
+      "jabbar"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 257
+      },
+      {
+        "s": 4,
+        "a": 76
+      },
+      {
+        "s": 5,
+        "a": 44
+      }
+    ]
+  },
+  {
+    "title": "Taghut",
+    "titleAr": "طاغوت",
+    "keywords": [
+      "taghut",
+      "false gods",
+      "طاغوت"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 257
+      },
+      {
+        "s": 4,
+        "a": 60
+      },
+      {
+        "s": 5,
+        "a": 44
+      }
+    ]
+  },
+  {
+    "title": "Satan (Iblis)",
+    "titleAr": "إبليس",
+    "keywords": [
+      "satan",
+      "iblis",
+      "shaytan",
+      "شیطان",
+      "إبليس"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 34
+      },
+      {
+        "s": 2,
+        "a": 36
+      },
+      {
+        "s": 7,
+        "a": 11
+      },
+      {
+        "s": 7,
+        "a": 12
+      },
+      {
+        "s": 15,
+        "a": 31
+      },
+      {
+        "s": 17,
+        "a": 61
+      },
+      {
+        "s": 38,
+        "a": 71
+      }
+    ]
+  },
+  {
+    "title": "Whisper of Satan",
+    "titleAr": "وسوسة",
+    "keywords": [
+      "whisper",
+      "waswasa",
+      "وسوسة"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 20
+      },
+      {
+        "s": 20,
+        "a": 120
+      },
+      {
+        "s": 114,
+        "a": 4
+      },
+      {
+        "s": 114,
+        "a": 5
+      }
+    ]
+  },
+  {
+    "title": "Seeking refuge",
+    "titleAr": "استعاذة",
+    "keywords": [
+      "seek refuge",
+      "a'udhu",
+      "اعوذ"
+    ],
+    "refs": [
+      {
+        "s": 7,
+        "a": 200
+      },
+      {
+        "s": 16,
+        "a": 98
+      },
+      {
+        "s": 23,
+        "a": 97
+      },
+      {
+        "s": 114,
+        "a": 1
+      }
+    ]
+  },
+  {
+    "title": "Stars",
+    "titleAr": "نجوم",
+    "keywords": [
+      "stars",
+      "najm",
+      "نجوم"
+    ],
+    "refs": [
+      {
+        "s": 6,
+        "a": 97
+      },
+      {
+        "s": 16,
+        "a": 12
+      },
+      {
+        "s": 37,
+        "a": 6
+      },
+      {
+        "s": 81,
+        "a": 2
+      }
+    ]
+  },
+  {
+    "title": "Sun and moon",
+    "titleAr": "شمس وقمر",
+    "keywords": [
+      "sun moon",
+      "shams qamar"
+    ],
+    "refs": [
+      {
+        "s": 6,
+        "a": 96
+      },
+      {
+        "s": 10,
+        "a": 5
+      },
+      {
+        "s": 21,
+        "a": 33
+      },
+      {
+        "s": 36,
+        "a": 38
+      }
+    ]
+  },
+  {
+    "title": "Mountains",
+    "titleAr": "جبال",
+    "keywords": [
+      "mountains",
+      "jibal",
+      "جبال"
+    ],
+    "refs": [
+      {
+        "s": 16,
+        "a": 15
+      },
+      {
+        "s": 21,
+        "a": 79
+      },
+      {
+        "s": 78,
+        "a": 7
+      }
+    ]
+  },
+  {
+    "title": "Seas",
+    "titleAr": "بحار",
+    "keywords": [
+      "sea",
+      "ocean",
+      "bahr",
+      "بحر"
+    ],
+    "refs": [
+      {
+        "s": 2,
+        "a": 164
+      },
+      {
+        "s": 10,
+        "a": 22
+      },
+      {
+        "s": 16,
+        "a": 14
+      },
+      {
+        "s": 24,
+        "a": 40
+      }
+    ]
+  }
+]
