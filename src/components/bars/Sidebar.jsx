@@ -3,6 +3,7 @@ import { FaTimes } from "react-icons/fa";
 import axios from "axios";
 import DataLoader from "../DataLoader";
 import "./Sidebar.css";
+import { apiUrl } from "../../config/api";
 
 import { JuzPageMap } from "../../pages/JuzPageMap";
 
@@ -53,7 +54,7 @@ const Sidebar = ({
       if (allSurahs.length === 0) {
         setIsLoading(true);
         try {
-          const res = await axios.get("http://localhost:5000/api/surahs/all");
+          const res = await axios.get(apiUrl("/api/surahs/all"));
           console.log("✅ Fetched all surahs:", res.data.length);
           setAllSurahs(res.data);
         } catch (err) {
@@ -271,7 +272,7 @@ const Sidebar = ({
                       console.log(`📡 Fetching verses for Surah ${surah.index}...`);
                       
                       const res = await axios.get(
-                        `http://localhost:5000/api/surahs/index/${surah.index}`,
+                        apiUrl(`/api/surahs/index/${surah.index}`),
                         {
                           headers: {
                             'Accept': 'application/json',

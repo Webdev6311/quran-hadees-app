@@ -11,6 +11,7 @@ import NasaiBookView from "../components/hadith/books/NasaiBookView";
 import IbnMajahBookView from "../components/hadith/books/IbnMajahBookView";
 import HadithHeroBirds from "../components/hadith/HadithHeroBirds";
 import { normalizeHadithDetail } from "../utils/hadithDetailNormalize";
+import { apiUrl } from "../config/api";
 import "./Pages.css";
 import "./Hadith.css";
 import "./HadithBackdrop.css";
@@ -116,7 +117,7 @@ const Hadith = () => {
 
       try {
         if (isLiveBook) {
-          const { data } = await axios.get(`http://localhost:5000/api/hadith/${selectedBook}/chapters`);
+          const { data } = await axios.get(apiUrl(`/api/hadith/${selectedBook}/chapters`));
           setChapters(data?.data || []);
           setBookMetadata(data?.metadata || null);
         } else {
@@ -151,7 +152,7 @@ const Hadith = () => {
 
       try {
         if (isLiveBook) {
-          const { data } = await axios.get(`http://localhost:5000/api/hadith/${selectedBook}/hadiths`, {
+          const { data } = await axios.get(apiUrl(`/api/hadith/${selectedBook}/hadiths`), {
             params: { chapter: selectedChapter, limit: 5000 },
           });
           setHadithItems(data?.data || []);
@@ -184,7 +185,7 @@ const Hadith = () => {
       setLoadingDetail(true);
       setError("");
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/hadith/${selectedBook}/hadiths/${selectedHadith}`);
+        const { data } = await axios.get(apiUrl(`/api/hadith/${selectedBook}/hadiths/${selectedHadith}`));
         setHadithDetail(normalizeHadithDetail(data?.data) || null);
         if (data?.metadata) setBookMetadata(data.metadata);
       } catch (err) {
@@ -247,7 +248,7 @@ const Hadith = () => {
     setSearchingHadith(true);
     setHasSearchedHadith(true);
     try {
-      const { data } = await axios.get("http://localhost:5000/api/hadith/search", {
+      const { data } = await axios.get(apiUrl("/api/hadith/search"), {
         params: { q: term, limit: 20 },
       });
       const results = data?.data || [];

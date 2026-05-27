@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SurahInfo.css";
+import { apiUrl } from "../config/api";
 
 const SurahInfo = ({ surah, onClose, onGoToSurah, activeTab = "urdu" }) => {
 
@@ -24,7 +25,7 @@ const SurahInfo = ({ surah, onClose, onGoToSurah, activeTab = "urdu" }) => {
         setError(null);
 
         const res = await axios.get(
-          `http://localhost:5000/api/pages/info/${surah.number}`,
+          apiUrl(`/api/pages/info/${surah.number}`),
           { params: { lang: currentTab } }
         );
 

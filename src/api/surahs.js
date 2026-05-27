@@ -1,7 +1,8 @@
 import axios from "axios";
+import { apiUrl } from "../config/api";
 
 /** Same source as `Quran.jsx` initial surah load */
-const SURAH_LIST_URL = "http://localhost:5000/api/surahs/all";
+const SURAH_LIST_URL = apiUrl("/api/surahs/all");
 
 /** Home grid → Quran: backup when router state is lost on remount */
 export const HOME_SURAH_NAV_STORAGE_KEY = "homeSelectSurah";

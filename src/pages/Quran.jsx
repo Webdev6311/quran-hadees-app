@@ -23,6 +23,7 @@ import { JuzPageMap } from "./JuzPageMap";
 import SurahInfo from "./SurahInfo";
 import { HeroSearchHighlight } from "../utils/heroSearchHighlight.jsx";
 import { getJuzFromSurahFallback, resolveJuzFromPageApiData } from "../utils/juzUtils";
+import { apiUrl } from "../config/api";
 
 
 const capitalizeWords = (str = "") =>
@@ -189,7 +190,7 @@ useEffect(() => {
     setKeywordSearchLoading(true);
 
     axios
-      .get("http://localhost:5000/api/quran/search", {
+      .get(apiUrl("/api/quran/search"), {
         params: {
           q: t,
           limit: 20,
@@ -234,7 +235,7 @@ const handlePageSelect = async (pageNumber) => {
 
   try {
     const pageResponse = await axios.get(
-      `http://localhost:5000/api/pages/${pageNumber}`
+      apiUrl(`/api/pages/${pageNumber}`)
     );
 
     const pageData = pageResponse.data?.data;
@@ -271,7 +272,7 @@ const handlePageSelect = async (pageNumber) => {
 
         const paddedIndex = String(surahNum).padStart(3, "0");
         const surahDataRes = await axios.get(
-          `http://localhost:5000/api/surahs/index/${paddedIndex}`
+          apiUrl(`/api/surahs/index/${paddedIndex}`)
         );
         if (surahDataRes.data) {
           setSelectedSurahData(surahDataRes.data);
@@ -290,7 +291,7 @@ const handlePageSelect = async (pageNumber) => {
   try {
     console.log("🎵 Fetching audio for surah:", surahNumber, "starting from ayah:", startAyah);
     const res = await axios.get(
-      `http://localhost:5000/api/audio/fullsurah/${surahNumber}`
+      apiUrl(`/api/audio/fullsurah/${surahNumber}`)
     );
 
     if (res.data?.playlist) {
@@ -329,12 +330,12 @@ const handlePageSelect = async (pageNumber) => {
     // 1️⃣ Surah meta (ayah count + revelation)
     const paddedIndex = String(surahNumber).padStart(3, "0");
     const metaRes = await axios.get(
-      `http://localhost:5000/api/surahs/index/${paddedIndex}`
+      apiUrl(`/api/surahs/index/${paddedIndex}`)
     );
 
     // 2️⃣ Language info
     const infoRes = await axios.get(
-      `http://localhost:5000/api/pages/info/${surahNumber}`,
+      apiUrl(`/api/pages/info/${surahNumber}`),
       { params: { lang } }
     );
 
@@ -362,7 +363,7 @@ const openGeneralSurahInfo = async (surahNumber, surahName) => {
     // 1️⃣ Surah meta (ayah count + revelation)
     const paddedIndex = String(surahNumber).padStart(3, "0");
     const metaRes = await axios.get(
-      `http://localhost:5000/api/surahs/index/${paddedIndex}`
+      apiUrl(`/api/surahs/index/${paddedIndex}`)
     );
 
     if (metaRes.data) {
@@ -421,7 +422,7 @@ const handleGoToSurahFromInfo = async (surahIndex) => {
 
     // Get the first page of this surah
     const pagesRes = await axios.get(
-      `http://localhost:5000/api/pages/surah/${surahIndex}`
+      apiUrl(`/api/pages/surah/${surahIndex}`)
     );
 
     if (pagesRes.data?.data?.[0]?.page) {
@@ -437,7 +438,7 @@ const handleGoToSurahFromInfo = async (surahIndex) => {
       // Fetch surah data for info display
       const paddedIndex = String(surahIndex).padStart(3, "0");
       const surahDataRes = await axios.get(
-        `http://localhost:5000/api/surahs/index/${paddedIndex}`
+        apiUrl(`/api/surahs/index/${paddedIndex}`)
       );
       
       if (surahDataRes.data) {
@@ -452,7 +453,7 @@ const handleGoToSurahFromInfo = async (surahIndex) => {
 
 const fetchJuzBySurah = async (surahNum) => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/juz/by-surah/${surahNum}`);
+    const res = await axios.get(apiUrl(`/api/juz/by-surah/${surahNum}`));
     const juz = Number(res.data?.data?.juz);
     if (Number.isInteger(juz) && juz >= 1 && juz <= 30) {
       setCurrentJuzNumber(juz);
@@ -513,7 +514,7 @@ const handleSurahSelect = async (surah) => {
     // Fetch surah data
     const paddedIndex = surahNum.toString().padStart(3, "0");
     const res = await axios.get(
-      `http://localhost:5000/api/surahs/index/${paddedIndex}`
+      apiUrl(`/api/surahs/index/${paddedIndex}`)
     );
 
     if (res.data) {
@@ -528,7 +529,7 @@ const handleSurahSelect = async (surah) => {
     // Fetch pages for the surah
     try {
       const pagesRes = await axios.get(
-        `http://localhost:5000/api/pages/surah/${surahNum}`
+        apiUrl(`/api/pages/surah/${surahNum}`)
       );
 
       if (pagesRes.data?.data) {
@@ -732,7 +733,7 @@ setTimeout(() => {
   try {
     const paddedIndex = String(surahNumber).padStart(3, "0");
     const surahRes = await axios.get(
-      `http://localhost:5000/api/surahs/index/${paddedIndex}`
+      apiUrl(`/api/surahs/index/${paddedIndex}`)
     );
 
    if (surahRes.data) {
@@ -802,7 +803,7 @@ setTimeout(() => {
 
       const paddedIndex = String(surahIndex).padStart(3, "0");
       const { data: surahData } = await axios.get(
-        `http://localhost:5000/api/surahs/index/${paddedIndex}`
+        apiUrl(`/api/surahs/index/${paddedIndex}`)
       );
       setSelectedSurah({
         index: surahIndex,
@@ -813,7 +814,7 @@ setTimeout(() => {
 
       // Fetch the audio URL
       const res = await axios.get(
-        `http://localhost:5000/api/audio/fullsurah/${surahIndex}`
+        apiUrl(`/api/audio/fullsurah/${surahIndex}`)
       );
 
       if (res.data?.playlist?.[0]) {
@@ -1485,7 +1486,7 @@ setTimeout(() => {
 
           try {
          const res = await axios.get(
-  `http://localhost:5000/api/pages/info/${Number(selectedSurah.index)}`,
+  apiUrl(`/api/pages/info/${Number(selectedSurah.index)}`),
   { params: { lang: "urdu" } }
 );
 
@@ -1522,7 +1523,7 @@ if (res.data.success && res.data.surah) {
 
           try {
            const res = await axios.get(
-  `http://localhost:5000/api/pages/info/${Number(selectedSurah.index)}`,
+  apiUrl(`/api/pages/info/${Number(selectedSurah.index)}`),
   { params: { lang: "english" } }
 );
 

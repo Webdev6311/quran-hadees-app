@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Contact.css";
 import contactImage from "../images/universty.png";
-
-const API_BASE =
-  import.meta.env.VITE_API_URL?.replace(/\/$/, "") || "http://localhost:5000";
+import { API_BASE_URL } from "../config/api";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -33,7 +31,7 @@ const Contact = () => {
     setSubmitting(true);
     try {
       const { data } = await axios.post(
-        `${API_BASE}/api/contact`,
+        `${API_BASE_URL}/api/contact`,
         payload,
         { headers: { "Content-Type": "application/json" }, timeout: 20000 }
       );

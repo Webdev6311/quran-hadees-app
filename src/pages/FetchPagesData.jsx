@@ -11,6 +11,7 @@ import {
 import { JuzPageMap } from "./JuzPageMap";
 import { updateJuzDisplay } from "../utils/juzUtils";
 import axios from "axios";
+import { apiUrl } from "../config/api";
 
 const FetchPagesData = ({
   pageNumber,
@@ -55,7 +56,7 @@ const FetchPagesData = ({
       setError(null);
 
       const pageResponse = await axios.get(
-        `http://localhost:5000/api/pages/${pageNum}`
+        apiUrl(`/api/pages/${pageNum}`)
       );
 
       // Backend returns shape: { success, data: { page, surahs, verses } }
@@ -177,7 +178,7 @@ const FetchPagesData = ({
         surahNumbers.map(async (surahNum) => {
           const padded = String(surahNum).padStart(3, "0");
           const res = await axios.get(
-            `http://localhost:5000/api/surahs/index/${padded}`
+            apiUrl(`/api/surahs/index/${padded}`)
           );
 
           const verses = res.data?.verses || [];

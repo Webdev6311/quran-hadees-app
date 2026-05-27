@@ -5,6 +5,7 @@ import { useOutletContext } from "react-router-dom";
 import { JuzPageMap } from "./JuzPageMap";
 import DataLoader from "../components/DataLoader";
 import "./FetchSurahData.css";
+import { apiUrl } from "../config/api";
 
 /** Page docs may use surahIndex, surahNumber, surahs[], or ranges[]. */
 function pageBelongsToSurah(p, surahNum) {
@@ -195,7 +196,7 @@ const FetchSurahData = ({
         }
         const paddedIndex = surahIndex.toString().padStart(3, "0");
         const res = await axios.get(
-          `http://localhost:5000/api/surahs/index/${paddedIndex}`,
+          apiUrl(`/api/surahs/index/${paddedIndex}`),
           { params: { lang: translationLang } }
         );
 
@@ -360,7 +361,7 @@ const FetchSurahData = ({
     (async () => {
       try {
         const res = await axios.post(
-          "http://localhost:5000/api/juz/resolve-ayahs",
+          apiUrl("/api/juz/resolve-ayahs"),
           { surahNumber: Number(surahIndex), ayahs: ayahNums },
           { signal: controller.signal, timeout: 15000 }
         );
@@ -380,12 +381,12 @@ const FetchSurahData = ({
         try {
           const [a, b] = await Promise.all([
             axios.get(
-              `http://localhost:5000/api/juz/for-ayah/${sn}/${lo}`,
+              apiUrl(`/api/juz/for-ayah/${sn}/${lo}`),
               { timeout: 10000 }
             ),
             lo !== hi
               ? axios.get(
-                  `http://localhost:5000/api/juz/for-ayah/${sn}/${hi}`,
+                  apiUrl(`/api/juz/for-ayah/${sn}/${hi}`),
                   { timeout: 10000 }
                 )
               : Promise.resolve(null),
@@ -466,7 +467,7 @@ const handleVerseClick = async (ayahNumber, pageNumber) => {
 
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/juz/for-ayah/${Number(surahIndex)}/${Number(ayahNumber)}`
+      apiUrl(`/api/juz/for-ayah/${Number(surahIndex)}/${Number(ayahNumber)}`)
     );
     if (res.data?.success && typeof setCurrentJuzNumber === "function") {
       const j = Number(res.data.data?.juz);

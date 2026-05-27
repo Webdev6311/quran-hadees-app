@@ -5,6 +5,7 @@ import { updateJuzDisplay } from "../utils/juzUtils";
 import axios from "axios";
 import DataLoader from "../components/DataLoader";
 import "./FetchJuzData.css";
+import { apiUrl } from "../config/api";
 
 
 const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, onSurahChange }) => {
@@ -76,7 +77,7 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
           const surahKey = String(surah.index).padStart(3, "0");
 
           const res = await axios.get(
-            `http://localhost:5000/api/urdu/${surahKey}`
+            apiUrl(`/api/urdu/${surahKey}`)
           );
 
           // 🔥 verse object save karo
@@ -105,7 +106,7 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
         const surahKey = String(surah.index).padStart(3, "0");
 
         const res = await axios.get(
-          `http://localhost:5000/api/english/${surahKey}`
+          apiUrl(`/api/english/${surahKey}`)
           
         );
 
@@ -134,7 +135,7 @@ const FetchJuzData = ({ juzNumber,  onOpenSurahInfo,viewMode, translationLang, o
     const fetchJuz = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/juz/${juzNumber}`
+          apiUrl(`/api/juz/${juzNumber}`)
         );
 
         if (!cancelled) {
