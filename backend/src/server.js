@@ -34,6 +34,18 @@ if (!process.env.MONGO_URI) {
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Debug endpoint for Vercel runtime.
+// Useful for confirming env vars + mongoose connection status quickly.
+app.get("/api/_debug", (req, res) => {
+  const readyState = mongoose.connection?.readyState;
+  res.json({
+    vercel: process.env.VERCEL === "1",
+    hasMONGO_URI: Boolean(process.env.MONGO_URI && String(process.env.MONGO_URI).trim().length > 10),
+    mongo_db_name: process.env.MONGO_DB_NAME || "quran_data",
+    mongoose_readyState: readyState,
+  });
+});
+
 // ✅ CORS middleware
 // If `CORS_ORIGINS` is NOT provided, we default to allowing all origins.
 // This prevents production CORS breakage when frontend+backend are deployed.
@@ -80,21 +92,14 @@ app.use(
 app.use(express.json());
 
 // ✅ Validate env variables
-if (!process.env.MONGO_URI || typeof process.env.MONGO_URI !== "string") {
-  console.error(
-    "❌ Missing MONGO_URI. Add it to .env or backend/dotenv (without angle brackets)."
-  );
-  process.exit(1);
-}
-
-const MONGO_URI = String(process.env.MONGO_URI).trim();
+// Important: do not hard-exit in Vercel. If env is missing, routes will return 500,
+// but debug endpoint should still work for diagnosis.
+const MONGO_URI = process.env.MONGO_URI ? String(process.env.MONGO_URI).trim() : "";
 if (!MONGO_URI || MONGO_URI.toLowerCase() === "undefined") {
-  console.error("❌ MONGO_URI is empty or 'undefined'. Check your env files.");
-  process.exit(1);
+  console.error("❌ Missing MONGO_URI. Set it in Vercel Environment Variables or provide .env in repo.");
 }
-if (MONGO_URI.includes("<") || MONGO_URI.includes(">")) {
+if (MONGO_URI && (MONGO_URI.includes("<") || MONGO_URI.includes(">"))) {
   console.error("❌ MONGO_URI contains angle brackets. Replace placeholders with real values.");
-  process.exit(1);
 }
 
 // ✅ MongoDB connect
@@ -102,12 +107,16 @@ const mongoConnectOptions = {
   dbName: process.env.MONGO_DB_NAME || "quran_data",
 };
 
-mongoose
-  .connect(MONGO_URI, mongoConnectOptions)
-  .then(() =>
-    console.log(`✅ MongoDB Connected to ${mongoConnectOptions.dbName} database`)
-  )
-  .catch((err) => console.error("❌ MongoDB connection failed:", err));
+if (MONGO_URI) {
+  mongoose
+    .connect(MONGO_URI, mongoConnectOptions)
+    .then(() =>
+      console.log(`✅ MongoDB Connected to ${mongoConnectOptions.dbName} database`)
+    )
+    .catch((err) => console.error("❌ MongoDB connection failed:", err));
+} else {
+  console.error("❌ MongoDB not initialized: missing MONGO_URI.");
+}
 
 // ✅ Base route
 app.get("/", (req, res) => {
