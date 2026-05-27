@@ -88,24 +88,23 @@ const Contact = () => {
               </p>
             )}
 
-            {/* Form par autoComplete="off" lagaya hai */}
-            <form className="contact-form" onSubmit={handleSubmit} autoComplete="off">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <label className="contact-field">
                 <span>Name</span>
                 <input
-                  type="text"
-                  name="name"
-                  value={name}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    // sirf alphabets allow
-                    if (/^[a-zA-Z\s]*$/.test(value)) {
-                      setName(value);
-                    }
-                  }}
-                  required
-                  autoComplete="one-time-code" // Browser autofill block karne k liye
-                />
+  type="text"
+  name="name"
+  value={name}
+  onChange={(e) => {
+    const value = e.target.value;
+
+    // sirf alphabets allow
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setName(value);
+    }
+  }}
+  required
+/>
               </label>
               <label className="contact-field">
                 <span>Email</span>
@@ -114,26 +113,27 @@ const Contact = () => {
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  
                   required
-                  autoComplete="one-time-code" // Browser autofill block karne k liye
+                  
                 />
               </label>
               <label className="contact-field contact-field--phone">
                 <span>Phone (XXX XXX XXX)</span>
                 <input
-                  type="tel"
-                  name="phone"
-                  value={phone}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    // sirf numbers allow
-                    if (/^[0-9]*$/.test(value)) {
-                      setPhone(value);
-                    }
-                  }}
-                  required
-                  autoComplete="one-time-code" // Browser autofill block karne k liye
-                />
+  type="tel"
+  name="phone"
+  value={phone}
+  onChange={(e) => {
+    const value = e.target.value;
+
+    // sirf numbers allow
+    if (/^[0-9]*$/.test(value)) {
+      setPhone(value);
+    }
+  }}
+  required
+/>
               </label>
               <label className="contact-field contact-field--full">
                 <span>Message</span>
@@ -144,7 +144,6 @@ const Contact = () => {
                   rows={5}
                   required
                   disabled={submitting}
-                  autoComplete="off"
                 />
               </label>
               <div className="contact-form-actions">
@@ -184,7 +183,7 @@ const Contact = () => {
               <div className="contact-info-row">
                 <dt>Address</dt>
                 <dd>
-                   St#5, Old Bracks Colony Link Road, Mughal Pura Lahore Cantt:
+                  St#5, Old Bracks Colony Link Road, Mughal Pura Lahore Cantt:
                 </dd>
               </div>
               <div className="contact-info-row">
